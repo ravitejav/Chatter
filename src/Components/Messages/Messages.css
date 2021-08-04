@@ -1,0 +1,36 @@
+.messageWrapper {
+    padding: 2px;
+    height: inherit;
+    padding-bottom: 5px;
+}
+.messageWrapper ul {
+    display: flex;
+    flex-direction: column;
+}
+.messageWrapper ul li {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    margin-bottom: 5px;
+}
+.messageWrapper ul li div {
+    height: fit-content;
+    padding: 10px;
+    max-width: 60%;
+    width: fit-content;
+}
+.sentByMe {
+    border-radius: 15px 15px 15px 0px;
+    background-color: #fff;
+}
+.sentByFriend {
+   
+    background-color: pink;
+    border-radius: 15px 15px 0px 15px;
+}
+.moveRight {
+    justify-content: flex-end;
+}
+.moveLeft {
+    justify-content: flex-start;
+}

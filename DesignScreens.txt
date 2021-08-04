@@ -1,0 +1,13 @@
+Screen:
+    https://dribbble.com/shots/13869298-Chat-Interface-Web-Application 
+
+    var firebaseConfig = {
+    apiKey: "AIzaSyBOJETyCSbUiUsVuVF4YLXWKKW0HfOgw3o",
+    authDomain: "chatter-app-one-on-one.firebaseapp.com",
+    projectId: "chatter-app-one-on-one",
+    storageBucket: "chatter-app-one-on-one.appspot.com",
+    messagingSenderId: "667912198050",
+    appId: "1:667912198050:web:202f7f325cc6bbe29844fb",
+    measurementId: "G-RHV4CQS211"
+  };
+
