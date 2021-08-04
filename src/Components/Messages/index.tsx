@@ -6,12 +6,12 @@ const Messages = () => {
            <ul className="messagesList">
                <li className="moveLeft">
                    <div className="sentByMe">
-                        This is sent from my friend
+                        This is sent by my friend
                    </div>
                </li>
                <li className="moveRight">
                    <div className="sentByFriend">
-                        This is sent by me
+                        This is sent from me
                    </div>
                </li>
            </ul>
