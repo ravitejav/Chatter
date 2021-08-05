@@ -16,3 +16,23 @@ jobs:
       - run: npm install
       - run: npm install react-scripts
       - run: npm run build
+      - name: Comment On PR
+        if: ${{ steps.cibuildstatus.outcome }} == "failure"
+        env:
+          URL: ${{ github.event.pull_request.comments_url }}
+          COMMENT_BODY: "{ \"body\": \"PR-RELEASE/CI-CHECK STATUS - ${{ github.event.pull_request.head.sha }} : ${{ steps.cibuildstatus.outcome }}\" }"
+          GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
+        run: |
+          echo "$URL"
+          echo "Pruning images from failure..."
+          docker image prune -f
+          curl \
+            -X POST \
+            $URL \
+            -H "Content-Type: application/json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            --data "$COMMENT_BODY"
+          if [ "${{ steps.cibuildstatus.outcome }}" == "failure" ]
+          then
+              exit 1
+          fi
