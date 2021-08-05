@@ -7,9 +7,9 @@ jobs:
   build-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: CHECKOUT
         uses: actions/checkout@v2
-      - name: Set-Up Node
+      - name: SETUP NODE
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
@@ -21,7 +21,7 @@ jobs:
       - name: BUILDING APPLICATION
         run: npm run build
         id: cibuildstatus
-      - name: Comment On PR
+      - name: COMMENT ON PR
         if: ${{ steps.cibuildstatus.outcome }} == "failure"
         env:
           URL: ${{ github.event.pull_request.comments_url }}
