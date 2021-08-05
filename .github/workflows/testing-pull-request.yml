@@ -13,9 +13,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
-      - run: npm install
-      - run: npm install react-scripts
-      - run: npm run build
+      - name: INSTALLING DEPENDENCIES
+        run: npm install
+      - name: INSTALLING REACT-SCRIPTS
+        run: npm install react-scripts
+      
+      - name: BUILDING APPLICATION
+        run: npm run build
+        id: cibuildstatus
       - name: Comment On PR
         if: ${{ steps.cibuildstatus.outcome }} == "failure"
         env:
