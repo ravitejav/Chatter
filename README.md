@@ -35,7 +35,7 @@ In Dev env, port 4000 is used.
 - For github Pages deployment run &nbsp; ``` npm run deploy``` (not recommended)
 
 ### &nbsp;&nbsp;&nbsp;AutoDeploy
-- By Merge PR to ```master``` with auto deploy to github pages
+- By Merging PR to ```master``` with auto deploy to github pages
 
 ## PR CHECKS
 - ```build-pull-request``` check is executed to verify build, after verification PR is allowed to merge 
