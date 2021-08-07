@@ -1,0 +1,30 @@
+.loginWrapper {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(202, 202, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loginContainer {
+    height: 80%;
+    width: 60%;
+    background-color: #fff;
+    display: flex;
+}
+.signinSignUp {
+    flex: 1;
+    padding: 5% 5%;
+}
+.resImg {
+    flex: 1;
+    background-color: rgb(61, 61, 233);
+    padding: 5% 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resImg img {
+    max-width: 300px;
+    max-height: 500px;
+}
