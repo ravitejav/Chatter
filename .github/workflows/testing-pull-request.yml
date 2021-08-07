@@ -15,9 +15,6 @@ jobs:
           node-version: "10.x"
       - name: INSTALLING DEPENDENCIES
         run: npm install
-      - name: INSTALLING REACT-SCRIPTS
-        run: npm install react-scripts
-      
       - name: BUILDING APPLICATION
         run: npm run build
         id: cibuildstatus
