@@ -1,0 +1,28 @@
+.toastWrapper {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 500px;
+    border-radius: 12px;
+    padding: 10px 30px;
+    bottom: 8%;
+    left: 50%;
+    margin-left: -250px;
+}
+.iconWrapper {
+    padding: 10px 5px;
+}
+.messageWrapper {
+    color: #000;
+    font-size: 16px;
+    padding-top: 6px;
+}
+.error {
+    background-color: rgb(226, 58, 58);
+}
+.success {
+    background-color: rgb(23, 192, 23);
+}
+.warning {
+    background-color: rgb(199, 199, 39);
+}

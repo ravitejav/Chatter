@@ -1,15 +1,43 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useHistory } from "react-router-dom";
+
+import { Firebase } from '../../Firebase';
 import { SIGNUP_OP } from '../../Constants/DefaultValues';
+import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR } from '../../Constants/ToasterContants';
 import { AuthProps } from '../../Models/AuthModels';
+import { toasterType } from '../../Models/ToasterModel';
+import Toaster from '../Toaster';
+
 import './Login.css';
 
 const Login = ({ changeOp }: AuthProps) => {
 
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
+
+    const history = useHistory();
+
+    useEffect(() => {
+        if(isUserLoggedIn) {
+            history.push("/Chatter/chat");
+        }
+    }, [isUserLoggedIn])
 
     const handleLogin = (e: any) => {
         e.preventDefault();
+        if(username !== "" && password !== "") {
+            const firebaseapp = new Firebase();
+            firebaseapp.googleSignIn(username, password)
+                .then(user => {
+                    setIsUserLoggedIn(true);
+                })
+                .catch(error => {
+                    console.log(error)
+                    setToastDetails(ERROR_CONSTANT(AUTH_ERROR))
+                });
+        }
     }
 
     const showSignUp = () => {
@@ -39,6 +67,7 @@ const Login = ({ changeOp }: AuthProps) => {
                 <p>New user?</p> 
                 <p className="signUpButton" onClick={showSignUp}>SignUp</p>
             </div>
+            <Toaster time={1} message={toastDetails.message} type={toastDetails.type as toasterType} showToast={toastDetails.showToast} />
         </div>
     )
 };
