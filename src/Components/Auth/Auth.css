@@ -28,3 +28,7 @@
     max-width: 300px;
     max-height: 500px;
 }
+.flip {
+    transform: rotateY(360deg);
+    transition: 0.5s;
+}
