@@ -13,10 +13,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "10.x"
-      - run: npm install
-      - run: npm install react-scripts
-      - run: npm run build
-      - name: deploy
+       - name: INSTALLING DEPENDENCIES
+        run: npm install
+      - name: BUILDING APPLICATION
+        run: npm run build
+      - name: DEPLOYING TO GH-PAGES
         uses: crazy-max/ghaction-github-pages@v2.5.0
         with: 
           target_branch: gh-pages
