@@ -27,3 +27,4 @@ export const AUTH_SUCCESS = "Successfully Loggedin";
 export const VERIFY_YOUR_MAIL = "Please verify your mailID.";
 export const SIGNUP_ERROR = "Failed to Signup, something went wrong";
 export const SIGNUP_SUCCESS = "Successfully signed up!!!, please verify your mail";
+export const GOOGLE_AUTH_ERROR = "Something went wrong";

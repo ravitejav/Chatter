@@ -4,7 +4,7 @@ import firebase from "firebase";
 
 import { Firebase } from '../../Firebase';
 import { SIGNUP_OP } from '../../Constants/DefaultValues';
-import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR, INVALID_DETAILS, AUTH_SUCCESS, SUCCESS_CONSTANT, WARNING_CONSTANT, VERIFY_YOUR_MAIL } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR, INVALID_DETAILS, AUTH_SUCCESS, SUCCESS_CONSTANT, WARNING_CONSTANT, VERIFY_YOUR_MAIL, GOOGLE_AUTH_ERROR } from '../../Constants/ToasterContants';
 import { AuthProps } from '../../Models/AuthModels';
 import { toasterType } from '../../Models/ToasterModel';
 import Toaster from '../Toaster';
@@ -71,7 +71,7 @@ const Login = ({ changeOp }: AuthProps) => {
                 onSignInSuccess(user, firebaseapp);
             })
             .catch(() => {
-                setErrorDetails(AUTH_ERROR);
+                setErrorDetails(GOOGLE_AUTH_ERROR);
             });
     }
 
