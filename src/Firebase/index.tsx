@@ -7,7 +7,20 @@ export class Firebase extends FirebaseAuth {
         super();
     }
 
-    googleSignIn(username: string, password: string) {
+    usernameWithPassSignIn(username: string, password: string) {
         return this.SignInWithEmailAndPassword(username, password);
     }
+
+    signOut() {
+        return this.SignOutAuth();
+    }
+
+    signInWithGoogle() {
+        return this.googleSignIn();
+    }
+
+    signUpWithUsernameAndPass(username: string, password: string) {
+        return this.signUpWithEmailAndPass(username, password);
+    }
+    
 }

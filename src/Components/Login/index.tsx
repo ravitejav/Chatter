@@ -1,14 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
+import firebase from "firebase";
 
 import { Firebase } from '../../Firebase';
 import { SIGNUP_OP } from '../../Constants/DefaultValues';
-import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR, INVALID_DETAILS, AUTH_SUCCESS, SUCCESS_CONSTANT, WARNING_CONSTANT, VERIFY_YOUR_MAIL } from '../../Constants/ToasterContants';
 import { AuthProps } from '../../Models/AuthModels';
 import { toasterType } from '../../Models/ToasterModel';
 import Toaster from '../Toaster';
 
 import './Login.css';
+import { Validate } from '../../Helpers/Validators';
+import { EMAIL, PASSWORD } from '../../Constants/ValidatorDefaults';
+import { callBack } from '../../Helpers/CallBackHelper';
 
 const Login = ({ changeOp }: AuthProps) => {
 
@@ -21,23 +25,63 @@ const Login = ({ changeOp }: AuthProps) => {
 
     useEffect(() => {
         if(isUserLoggedIn) {
-            history.push("/Chatter/chat");
+            setToastDetails(SUCCESS_CONSTANT(AUTH_SUCCESS));
+            callBack(1, successHandler);
         }
     }, [isUserLoggedIn])
 
+    const successHandler = () => {
+        history.push("/Chatter/chat");
+    }
+
+    const setErrorDetails = (message: string) => {
+        setToastDetails(ERROR_CONSTANT(message));
+        callBack(1, resetToast);
+    }
+
+    const setWarnDetails = (message: string) => {
+        setToastDetails(WARNING_CONSTANT(message));
+        callBack(1, resetToast);
+    }
+
+    const resetToast = () => { 
+        setToastDetails(TOAST_CONSTANT);
+    }
+
     const handleLogin = (e: any) => {
         e.preventDefault();
-        if(username !== "" && password !== "") {
+        if(Validate(EMAIL, username) && Validate(PASSWORD, password)) {
             const firebaseapp = new Firebase();
-            firebaseapp.googleSignIn(username, password)
+            firebaseapp.usernameWithPassSignIn(username, password)
                 .then(user => {
-                    setIsUserLoggedIn(true);
+                    onSignInSuccess(user, firebaseapp);
                 })
                 .catch(error => {
-                    console.log(error)
-                    setToastDetails(ERROR_CONSTANT(AUTH_ERROR))
+                    setErrorDetails(AUTH_ERROR);
                 });
+        } else {
+            setErrorDetails(INVALID_DETAILS);
         }
+    }
+
+    const signInWithGoogle = () => {
+        const firebaseapp = new Firebase();
+        firebaseapp.signInWithGoogle()
+            .then(user => {
+                onSignInSuccess(user, firebaseapp);
+            })
+            .catch(() => {
+                setErrorDetails(AUTH_ERROR);
+            });
+    }
+
+    const onSignInSuccess = (user: firebase.auth.UserCredential, firebaseapp: any) => {
+        if(user?.user?.emailVerified) {
+            setIsUserLoggedIn(true);
+            return;
+        }
+        setWarnDetails(VERIFY_YOUR_MAIL);
+        firebaseapp.signOut().then().catch();
     }
 
     const showSignUp = () => {
@@ -58,7 +102,7 @@ const Login = ({ changeOp }: AuthProps) => {
                 <div>or Sign In with Google</div> 
                 <div className="line"></div>
             </div>
-            <div className="googleSignInButton">
+            <div className="googleSignInButton" onClick={signInWithGoogle}>
                 <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
                 <i className="fab fa-google fa-3x"></i>
                 <p>SignIn with Google</p>
