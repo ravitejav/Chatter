@@ -1,6 +1,7 @@
 import { faCheckCircle, faExclamationTriangle, faInfo, faShieldAlt, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import { callBack } from '../../Helpers/CallBackHelper';
 import { ToasterProps, toasterType } from '../../Models/ToasterModel';
 import './Toaster.css';
 
@@ -16,10 +17,10 @@ const Toaster = ({ time, message, type, styles = {}, showToast = false }: Toaste
 
     const showToastMessage = () => {
         setShowToaster(true);
-        setTimeout(() => {
-            setShowToaster(false);
-        }, time * 1000)
+        callBack(time, hideToaster);
     }
+
+    const hideToaster = () => setShowToaster(false);
 
     const getClassNames = (type: toasterType) => {
         switch (type) {
