@@ -1,11 +1,16 @@
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
+import SearchUser from '../SearchUser';
 import './UserList.css';
 
 const UserList = () => {
+
+    const [createNew, setCreateNew] = useState(false);
+
     return (
         <section className="userListWrapper">
-            <div className="createNew">
+            <div className="createNew" onClick={() => setCreateNew(true)}>
                 <span className="plus">
                     <FontAwesomeIcon icon={faPlus} />
                 </span>
@@ -40,6 +45,7 @@ const UserList = () => {
                     ))}
                 </ul>
             </div>
+            {createNew && (<SearchUser hideSearchPopUp={() => setCreateNew(false)} />)}
         </section>
     );
 }
