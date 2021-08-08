@@ -70,7 +70,7 @@ const Login = ({ changeOp }: AuthProps) => {
             .then(user => {
                 onSignInSuccess(user, firebaseapp);
             })
-            .catch(() => {
+            .catch(error => {
                 setErrorDetails(GOOGLE_AUTH_ERROR);
             });
     }

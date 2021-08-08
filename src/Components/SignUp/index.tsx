@@ -49,7 +49,7 @@ const SignUp = ({ changeOp }: AuthProps) => {
             .then(user => {
                 handleOnSignUpSuccess(firebaseapp);
             })
-            .catch(() => {
+            .catch(error => {
                 setErrorDetails(GOOGLE_AUTH_ERROR);
             });
     }
