@@ -28,3 +28,5 @@ export const VERIFY_YOUR_MAIL = "Please verify your mailID.";
 export const SIGNUP_ERROR = "Failed to Signup, something went wrong";
 export const SIGNUP_SUCCESS = "Successfully signed up!!!, please verify your mail";
 export const GOOGLE_AUTH_ERROR = "Something went wrong";
+export const INVALID_NAME = "Name must have 8 letters";
+export const FAILED_TO_UPDATE = "Failed to update data, please try again later!!!";

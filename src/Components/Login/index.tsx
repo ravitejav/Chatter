@@ -12,12 +12,14 @@ import Toaster from '../Toaster';
 import './Login.css';
 import { Validate } from '../../Helpers/Validators';
 import { EMAIL, PASSWORD } from '../../Constants/ValidatorDefaults';
-import { callBack } from '../../Helpers/CallBackHelper';
+import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
+import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 
 const Login = ({ changeOp }: AuthProps) => {
 
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [currentUser, setCurrentUser] = useState({} as firebase.UserInfo);
     const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
     const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
 
@@ -31,7 +33,23 @@ const Login = ({ changeOp }: AuthProps) => {
     }, [isUserLoggedIn])
 
     const successHandler = () => {
-        history.push("/Chatter/chat");
+        const userDetails = new FirebaseUser();
+        if(currentUser) {
+            userDetails.getUserDetails(uidExtractor(currentUser.email || ''))
+            .then((userData: any) => {
+                if(userData.name) {
+                    history.push("/Chatter/chat");
+                } else {
+                    history.push("/Chatter/details");
+                }
+            }).catch(error => {
+                history.push("/Chatter/details");
+            })
+        } else {
+            setCurrentUser({} as firebase.UserInfo);
+            setIsUserLoggedIn(false);
+        }
+        
     }
 
     const setErrorDetails = (message: string) => {
@@ -76,6 +94,7 @@ const Login = ({ changeOp }: AuthProps) => {
     }
 
     const onSignInSuccess = (user: firebase.auth.UserCredential, firebaseapp: any) => {
+        setCurrentUser(user.user as firebase.UserInfo);
         if(user?.user?.emailVerified) {
             setIsUserLoggedIn(true);
             return;

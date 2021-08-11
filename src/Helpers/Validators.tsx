@@ -1,4 +1,4 @@
-import { EMAIL, PASSWORD } from "../Constants/ValidatorDefaults";
+import { EMAIL, NAME, PASSWORD } from "../Constants/ValidatorDefaults";
 
 export const Emailvalidator = (email: string) => {
     if(email !== "") {
@@ -15,6 +15,13 @@ export const passwordValidator = (password: string) => {
     return false;
 }
 
+export const nameValidator = (name: string) => {
+    if(name !== "" && name.length >= 8) {
+        return true;
+    }
+    return false;
+}
+
 
 export const Validate = (type: string, value: any) => {
     const validators = [];
@@ -24,6 +31,9 @@ export const Validate = (type: string, value: any) => {
     }
     if(type === PASSWORD) {
         validators.push(passwordValidator(value));
+    }
+    if(type === NAME) {
+        validators.push(nameValidator(value));
     }
 
     return !validators.some(x => !x);

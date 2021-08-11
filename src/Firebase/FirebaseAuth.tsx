@@ -30,4 +30,9 @@ export class FirebaseAuth {
     public sendVerificationEmail() {
         return this.auth.currentUser?.sendEmailVerification();
     }
+
+    public getCurrentUser() {
+        return this.auth.currentUser;
+    }
+
 }
