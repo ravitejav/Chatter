@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Login from '../Login';
 import { LOGIN_IMAGE, LOGIN_OP } from '../../Constants/DefaultValues';

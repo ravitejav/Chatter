@@ -4,3 +4,4 @@ export const LOGIN_IMAGE = "https://firebasestorage.googleapis.com/v0/b/chatter-
 export const ERROR = "ERROR";
 export const SUCCESS = "SUCCESS";
 export const WARNING = "WARNING";
+export const DEFAULT_ADDITONAL_DETAILS = { name: "" };

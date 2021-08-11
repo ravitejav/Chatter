@@ -1,0 +1,40 @@
+.additionalDetailsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: rgb(202, 202, 255);
+}
+.additionalDetailsWrapper .additionalDetailsForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 20px 32px -8px rgb(9 30 66 / 25%), 0 0 1px rgb(9 30 66 / 31%);
+}
+.additionalDetailsWrapper .additionalDetailsForm p {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+.additionalDetailsWrapper .additionalDetailsForm form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.additionalDetailsWrapper .additionalDetailsForm form input {
+    border: 1px solid #000;
+    height: 30px;
+    font-size: 12px;
+    outline: none;
+    border-radius: 16px;
+    padding: 12px;
+    width: 240px;
+}
+.additionalDetailsWrapper .additionalDetailsForm form button {
+    margin-top: 6px;
+    width: fit-content;
+    align-self: center;
+    color: #fff;
+    background-color: blue;
+    padding: 5px 10px;
+    border-radius: 24px;
+}

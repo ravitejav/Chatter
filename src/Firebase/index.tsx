@@ -1,4 +1,3 @@
-import FirebaseApp from "./FirebaseApp";
 import { FirebaseAuth } from "./FirebaseAuth";
 
 export class Firebase extends FirebaseAuth {
