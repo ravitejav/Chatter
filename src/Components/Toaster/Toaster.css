@@ -8,6 +8,7 @@
     bottom: 8%;
     left: 50%;
     margin-left: -250px;
+    z-index: 99;
 }
 .iconWrapper {
     padding: 10px 5px;
@@ -25,4 +26,7 @@
 }
 .warning {
     background-color: rgb(199, 199, 39);
+}
+.info {
+    background-color: rgb(167, 227, 245);
 }

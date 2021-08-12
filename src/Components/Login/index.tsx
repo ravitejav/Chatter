@@ -28,7 +28,7 @@ const Login = ({ changeOp }: AuthProps) => {
     useEffect(() => {
         if(isUserLoggedIn) {
             setToastDetails(SUCCESS_CONSTANT(AUTH_SUCCESS));
-            callBack(1, successHandler);
+            callBack(0.5, successHandler);
         }
     }, [isUserLoggedIn])
 

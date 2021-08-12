@@ -7,19 +7,23 @@ import FirebaseApp from "./FirebaseApp";
 export class FirebaseUser {
 
     private database: firebase.database.Database;
+    private auth: firebase.auth.Auth;
 
     constructor() {
         this.database = FirebaseApp.database();
+        this.auth = FirebaseApp.auth();
     }
 
     private getUserRef() {
         return this.database.ref().child("users");
     }
 
-    private getAllUsers() {
-        this.getUserRef().get()
-            .then(res => res.exists() ? res.val() : {})
-            .catch(error => { });
+    getAllUsers() {
+        return new Promise((resolve, reject) => {
+            this.getUserRef().get()
+                .then(res => res.exists() ? resolve(res.val()) : reject(NO_DATA_ERROR))
+                .catch(error => reject(NO_DATA_ERROR));
+        });
     }
 
     getUserDetails(userId: string) {
@@ -54,6 +58,16 @@ export class FirebaseUser {
                         : reject(NO_DATA_ERROR)
                 })
                 .catch(error => reject(error))
+        });
+    }
+
+    public getCurrentUser() {
+        return this.auth.currentUser;
+    }
+
+    public sendRequest(userId: string, requestUserId: string) {
+        return this.getUserRef().child(requestUserId).child("requests").set({
+            [userId]: true,
         });
     }
 
