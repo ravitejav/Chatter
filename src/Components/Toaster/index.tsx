@@ -27,7 +27,7 @@ const Toaster = ({ time, message, type, styles = {}, showToast = false }: Toaste
             case "ERROR": return "toastWrapper error";
             case "SUCCESS": return "toastWrapper success";
             case "WARNING": return "toastWrapper warning";
-            default: return "toastWrapper";
+            default: return "toastWrapper info";
         }
     }
 

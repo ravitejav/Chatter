@@ -23,7 +23,8 @@ const AdditionalDetails = () => {
         if (Validate(NAME, addtionalDetial.name)) {
             const userObj = new FirebaseUser();
             const firebaseAuth = new FirebaseAuth();
-            userObj.saveUserData({ ...addtionalDetial },  uidExtractor(firebaseAuth.getCurrentUser()?.email || ""))
+            const email = firebaseAuth.getCurrentUser()?.email || "";
+            userObj.saveUserData({ ...addtionalDetial, email },  uidExtractor(email))
                 .then(res => {
                     history.push("/Chatter/chat");
                 })

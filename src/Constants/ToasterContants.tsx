@@ -20,6 +20,11 @@ export const WARNING_CONSTANT = (message: string) => ({
     type: "WARNING" as toasterType,
     showToast: true
 });
+export const INO_CONSTANT = (message: string) => ({
+    message: message,
+    type: "NON" as toasterType,
+    showToast: true
+});
 
 export const INVALID_DETAILS = "Invalid Username or Password";
 export const AUTH_ERROR = "Username and Password didn't match, please check";
@@ -30,3 +35,6 @@ export const SIGNUP_SUCCESS = "Successfully signed up!!!, please verify your mai
 export const GOOGLE_AUTH_ERROR = "Something went wrong";
 export const INVALID_NAME = "Name must have 8 letters";
 export const FAILED_TO_UPDATE = "Failed to update data, please try again later!!!";
+export const MINIMUM_CHARS = "Please eneter atleast 3 letters to search!";
+export const FRIEND_REQ_SENT = (name: string) => `Your request is sent to the ${name}`;
+export const FAILED_TO_SEND_REQ = (name: string) => `Failed to send your request to the ${name}`;
