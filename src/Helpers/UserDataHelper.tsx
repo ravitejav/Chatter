@@ -13,3 +13,7 @@ export const extractSearchResults = (searchText: string, searchResults: any, cur
         })
         .filter(ele => ele != null);
 }
+
+export const jsonToArray = (json: any) => {
+    return Object.keys(json).map(jsonKey => json[jsonKey]).filter(json => json);
+}

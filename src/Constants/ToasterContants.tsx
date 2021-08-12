@@ -20,7 +20,7 @@ export const WARNING_CONSTANT = (message: string) => ({
     type: "WARNING" as toasterType,
     showToast: true
 });
-export const INO_CONSTANT = (message: string) => ({
+export const INFO_CONSTANT = (message: string) => ({
     message: message,
     type: "NON" as toasterType,
     showToast: true
@@ -38,3 +38,6 @@ export const FAILED_TO_UPDATE = "Failed to update data, please try again later!!
 export const MINIMUM_CHARS = "Please eneter atleast 3 letters to search!";
 export const FRIEND_REQ_SENT = (name: string) => `Your request is sent to the ${name}`;
 export const FAILED_TO_SEND_REQ = (name: string) => `Failed to send your request to the ${name}`;
+export const USER_IS_ADDED = "Added to user list!!";
+export const REMOVED_FROM_REQUEST_LIST = "Request is removed!!";
+

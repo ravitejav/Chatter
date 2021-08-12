@@ -1,0 +1,73 @@
+.friendRequestMapper {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.friendRequestMapper .friendRequest {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding: 50px 0px;
+}
+.friendRequestMapper .noRequests {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+.friendRequestMapper .friendRequest li {
+  position: relative;
+  list-style: none;
+  border: 2px solid #fff;
+  height: 100px;
+  width: 500px;
+  border-radius: 25px;
+  background-color: #fdfdfd;
+  box-shadow: -10px -10px 15px #fff, 10px 10px 15px rgba(0, 0, 0, 0.1), inset -5px -5px 15px #fff, inset 5px 5px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+}
+.friendRequestMapper .friendRequest li .detailWrapper {
+  display: flex;
+  padding: 10px 40px;
+  height: 100%;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .details span:nth-child(1) {
+  font-size: 24px;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .details span:nth-child(2) {
+  font-size: 16px;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton button {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  box-shadow: inset 0px -5px 5px rgba(0, 0, 0, 0.1), 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 10px 15px rgba(0, 0, 0, 0.1);
+}
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton button:nth-child(1) {
+  color: #0f0;
+  margin-right: 12px;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton button:nth-child(2) {
+  color: #f00;
+}

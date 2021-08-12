@@ -3,6 +3,7 @@ import { faComments } from "@fortawesome/free-regular-svg-icons";
 
 import './SideBar.css';
 import { sideBarNavigation } from '../../Constants/SideBar';
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
@@ -17,7 +18,7 @@ const SideBar = () => {
                             <span className="routeIcon">
                                 <FontAwesomeIcon icon={route.icon} />
                             </span>
-                            <a href={route.path}>{route.name}</a>
+                            <Link to={route.path}>{route.name}</Link>
                         </li>
                     ))}
                 </ul>

@@ -6,7 +6,6 @@ import {
   Route
 } from "react-router-dom";
 import Auth from './Components/Auth';
-import AdditionalDetails from './Components/AdditionalDetails';
 
 function App() {
   return (
@@ -15,12 +14,7 @@ function App() {
           <Route path="/Chatter/" exact={true}>
             <Auth/>
           </Route>
-          <Route path="/Chatter/chat">
-            <HomePage />
-          </Route>
-          <Route path="/Chatter/details">
-            <AdditionalDetails />
-          </Route>
+          <Route path="/Chatter/:id" component={HomePage} />
         </Switch>
     </Router>
   );

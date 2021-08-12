@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ERROR_CONSTANT, FAILED_TO_SEND_REQ, FRIEND_REQ_SENT, INO_CONSTANT, MINIMUM_CHARS, TOAST_CONSTANT, WARNING_CONSTANT } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, FAILED_TO_SEND_REQ, FRIEND_REQ_SENT, INFO_CONSTANT, MINIMUM_CHARS, TOAST_CONSTANT, WARNING_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
 import { extractSearchResults } from '../../Helpers/UserDataHelper';
@@ -37,7 +37,7 @@ const SearchUser = (props: SearchUserProps) => {
         const currentUserEmail = userDetails.getCurrentUser()?.email || "";
         userDetails.sendRequest(uidExtractor(currentUserEmail), uidExtractor(user.email))
             .then(res => {
-                setToastDetails(INO_CONSTANT(FRIEND_REQ_SENT(user.name)));
+                setToastDetails(INFO_CONSTANT(FRIEND_REQ_SENT(user.name)));
                 callBack(1, resetToast);
             })
             .catch(error => {

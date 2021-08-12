@@ -1,5 +1,6 @@
 import firebase from "firebase";
 import { NO_DATA_ERROR } from "../Constants/Firebase";
+import { uidExtractor } from "../Helpers/CallBackHelper";
 import { UserDetails } from "../Models/UserModels";
 
 import FirebaseApp from "./FirebaseApp";
@@ -68,6 +69,27 @@ export class FirebaseUser {
     public sendRequest(userId: string, requestUserId: string) {
         return this.getUserRef().child(requestUserId).child("requests").set({
             [userId]: true,
+        });
+    }
+
+    public getRequests() {
+        const currentUserMail = uidExtractor(this.getCurrentUser()?.email || "");
+        return this.getUserRef().child(currentUserMail).child("requests").get();
+    }
+
+    acceptFriendRequest(friendId: string, userId: string) {
+        return Promise.all([
+            this.getUserRef().child(userId).child("friends").child(friendId).set(true), 
+            this.getUserRef().child(friendId).child("friends").child(userId).set(true), 
+            this.getUserRef().child(userId).child("requests").update({
+                [friendId]: false
+            })
+        ]);
+    }
+
+    rejectFriendRequest(userId: string, friendId: string) {
+        return this.getUserRef().child(userId).child("requests").update({
+            [friendId]: false
         });
     }
 
