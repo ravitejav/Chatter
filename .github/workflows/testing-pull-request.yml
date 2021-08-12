@@ -38,3 +38,11 @@ jobs:
           then
               exit 1
           fi
+        - name: AUTO REVIEW FROM BOT
+          uses: golfzaptw/action-auto-reviews-from-branches@master
+          with:
+            GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
+            EVENT_TYPE: APPROVE
+            BRANCHES: master
+            AUTHOR: 'dependabot-preview[bot], dependabot[bot]'
+            MESSAGE: Approval from github bot after successful build.
