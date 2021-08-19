@@ -93,4 +93,9 @@ export class FirebaseUser {
         });
     }
 
+    getMyFriends() {
+        const currentUserMailId = this.getCurrentUser()?.email || "";
+        return this.getUserRef().child(uidExtractor(currentUserMailId)).child("/friends/").get();
+    }
+
 }
