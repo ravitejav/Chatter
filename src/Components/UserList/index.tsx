@@ -73,8 +73,8 @@ const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
                 <ul>
                     {friends
                         .filter((friend: any) => friend.name.includes(searchText))
-                        .map((friend: any) => (
-                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUserEmail ? "active" : ""}>
+                        .map((friend: any, i: number) => (
+                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUserEmail ? "active" : ""} key={i}>
                                 <span className="profileImage"><img src="https://openarmsopenminds.com/wp-content/uploads/2019/08/dummy-profile-pic.png" /></span>
                                 <span className="userName">
                                     <span className="name">{friend.name}</span>

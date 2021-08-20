@@ -39,8 +39,8 @@ const Messages = ({ activeChatEmail }: MessagingProps) => {
     return (
         <div className="messageWrapper">
             <ul className="messagesList">
-                {messages.map(message => (
-                    <li className={message.from !== activeChatEmail ? "moveRight" : "moveLeft"}>
+                {messages.map((message, index) => (
+                    <li className={message.from !== activeChatEmail ? "moveRight" : "moveLeft"} key={index}>
                         <div className={message.from !== activeChatEmail ? "sentByFriend" : "sentByMe"}>
                             {message.message}
                         </div>
