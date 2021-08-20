@@ -16,7 +16,7 @@ jobs:
           node-version: "10.x"
       - name: INSTALLING DEPENDENCIES
         run: npm install
-      - name: BUILDING APPLICATION
+      - name: RUNNING LINT
         run: npm run lint
         id: cibuildstatus
       - name: COMMENT ON PR

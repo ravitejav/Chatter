@@ -22,8 +22,8 @@ const FriendRequests = () => {
     const getuserData = () =>{
         const userQuery = new FirebaseUser();
         userQuery.getAllUsers()
-            .then(users => {
-                setUsers(users);
+            .then(resultsUsers => {
+                setUsers(resultsUsers);
                 userQuery.getRequests()
                     .then(res => res.exists() ? setRequests(res.val()) : null)
                     .catch(error => WARNING_CONSTANT(GOOGLE_AUTH_ERROR));
