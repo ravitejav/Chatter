@@ -8,7 +8,7 @@ import { AuthProps } from '../../Models/AuthModels';
 import './SignUp.css';
 import Toaster from '../Toaster';
 import { toasterType } from '../../Models/ToasterModel';
-import { AUTH_ERROR, ERROR_CONSTANT, GOOGLE_AUTH_ERROR, INVALID_DETAILS, SIGNUP_ERROR, SIGNUP_SUCCESS, SUCCESS_CONSTANT, TOAST_CONSTANT } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, INVALID_DETAILS, SIGNUP_ERROR, SIGNUP_SUCCESS, SUCCESS_CONSTANT, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { callBack } from '../../Helpers/CallBackHelper';
 
 const SignUp = ({ changeOp }: AuthProps) => {
