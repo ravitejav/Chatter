@@ -72,8 +72,6 @@ const FriendRequests = () => {
             })
     }
 
-    useEffect(() => console.log(requests), [requests]);
-
     return (
         <section className="friendRequestMapper">
             <ul className="friendRequest">

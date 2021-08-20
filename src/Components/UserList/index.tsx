@@ -4,12 +4,13 @@ import { useEffect, useState } from 'react';
 import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack } from '../../Helpers/CallBackHelper';
+import { UserListProps } from '../../Models/SearchUser';
 import { toasterType } from '../../Models/ToasterModel';
 import SearchUser from '../SearchUser';
 import Toaster from '../Toaster';
 import './UserList.css';
 
-const UserList = () => {
+const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
 
     const [createNew, setCreateNew] = useState(false);
     const [searchText, setSearchText] = useState("");
@@ -24,7 +25,7 @@ const UserList = () => {
             .then((res: any) => {
                 firebaseUser.getMyFriends()
                     .then(friendList => {
-                        const friends = friendList.val();
+                        const friends = friendList.val() || {};
                         const extractedFriends = Object.keys(friends).map(id => ({
                             id,
                             name: res[id].name,
@@ -73,7 +74,7 @@ const UserList = () => {
                     {friends
                         .filter((friend: any) => friend.name.includes(searchText))
                         .map((friend: any) => (
-                            <li>
+                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUserEmail ? "active" : ""}>
                                 <span className="profileImage"><img src="https://openarmsopenminds.com/wp-content/uploads/2019/08/dummy-profile-pic.png" /></span>
                                 <span className="userName">
                                     <span className="name">{friend.name}</span>

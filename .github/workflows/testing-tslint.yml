@@ -5,7 +5,7 @@ on:
       - master
       - '*-release'
 jobs:
-  build-pull-request:
+  build-lint-check:
     runs-on: ubuntu-latest
     steps:
       - name: CHECKOUT
@@ -17,13 +17,13 @@ jobs:
       - name: INSTALLING DEPENDENCIES
         run: npm install
       - name: BUILDING APPLICATION
-        run: npm run build
+        run: npm run lint
         id: cibuildstatus
       - name: COMMENT ON PR
         if: ${{ steps.cibuildstatus.outcome }} == "failure"
         env:
           URL: ${{ github.event.pull_request.comments_url }}
-          COMMENT_BODY: "{ \"body\": \"PR-RELEASE/BUILD-CHECK - ${{ github.event.pull_request.head.sha }} : ${{ steps.cibuildstatus.outcome }}\" }"
+          COMMENT_BODY: "{ \"body\": \"PR-RELEASE/LINT-CHECK - ${{ github.event.pull_request.head.sha }} : ${{ steps.cibuildstatus.outcome }}\" }"
           GITHUB_TOKEN: ${{ secrets.ACTION_KEY }}
         run: |
           echo "$URL"

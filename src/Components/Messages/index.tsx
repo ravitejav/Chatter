@@ -1,21 +1,53 @@
+import { useEffect, useState } from 'react';
+import firebase from "firebase";
+
+import { FirebaseMessaging } from '../../Firebase/FirebaseMessages';
+import { MessageType } from '../../Models/Message';
+import { MessagingProps } from '../../Models/MessagingModels';
+
 import './Messages.css';
 
-const Messages = () => {
+const Messages = ({ activeChatEmail }: MessagingProps) => {
+
+    const [messages, setMessages] = useState([] as Array<MessageType>);
+
+    const updateMessages = (newMessage: MessageType) => {
+        const sortedMessages = [...messages, newMessage];
+        setMessages(sortedMessages.sort((a: MessageType, b: MessageType) => (a.timestamp - b.timestamp)));
+    };
+
+    const messageUpdater = (snapshot: firebase.database.DataSnapshot) => {
+        if (snapshot.exists()) {
+            const arrivedMessages = snapshot.val() || {};
+            if (Object.keys(arrivedMessages).length > 1) {
+                const receivedMessages = Object.keys(arrivedMessages).map(messageStamp => arrivedMessages[messageStamp]);
+                setMessages(receivedMessages.sort((a: MessageType, b: MessageType) => (a.timestamp - b.timestamp)));
+            }
+        }
+    }
+
+    const meesageFetching = () => {
+        const firebaseMessages = new FirebaseMessaging();
+        firebaseMessages.getMessagesOnce(activeChatEmail, messageUpdater);
+    }
+
+    useEffect(() => {
+        setMessages([] as Array<MessageType>);
+        meesageFetching();
+    }, [activeChatEmail]);
+
     return (
-       <div className="messageWrapper">
-           <ul className="messagesList">
-               <li className="moveLeft">
-                   <div className="sentByMe">
-                        This is sent by my friend
-                   </div>
-               </li>
-               <li className="moveRight">
-                   <div className="sentByFriend">
-                        This is sent from me
-                   </div>
-               </li>
-           </ul>
-       </div>
+        <div className="messageWrapper">
+            <ul className="messagesList">
+                {messages.map(message => (
+                    <li className={message.from !== activeChatEmail ? "moveRight" : "moveLeft"}>
+                        <div className={message.from !== activeChatEmail ? "sentByFriend" : "sentByMe"}>
+                            {message.message}
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
     );
 };
 

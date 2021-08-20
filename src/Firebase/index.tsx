@@ -1,25 +1,23 @@
-import { FirebaseAuth } from "./FirebaseAuth";
+import { FirebaseAuth } from './FirebaseAuth'
 
 export class Firebase extends FirebaseAuth {
-    
-    constructor() {
-        super();
-    }
+  constructor() {
+    super()
+  }
 
-    usernameWithPassSignIn(username: string, password: string) {
-        return this.SignInWithEmailAndPassword(username, password);
-    }
+  usernameWithPassSignIn(username: string, password: string) {
+    return this.SignInWithEmailAndPassword(username, password)
+  }
 
-    signOut() {
-        return this.SignOutAuth();
-    }
+  signOut() {
+    return this.SignOutAuth()
+  }
 
-    signInWithGoogle() {
-        return this.googleSignIn();
-    }
+  signInWithGoogle() {
+    return this.googleSignIn()
+  }
 
-    signUpWithUsernameAndPass(username: string, password: string) {
-        return this.signUpWithEmailAndPass(username, password);
-    }
-    
+  signUpWithUsernameAndPass(username: string, password: string) {
+    return this.signUpWithEmailAndPass(username, password)
+  }
 }
