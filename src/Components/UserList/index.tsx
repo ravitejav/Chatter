@@ -25,8 +25,8 @@ const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
             .then((res: any) => {
                 firebaseUser.getMyFriends()
                     .then(friendList => {
-                        const friends = friendList.val() || {};
-                        const extractedFriends = Object.keys(friends).map(id => ({
+                        const extractedFriendsList = friendList.val() || {};
+                        const extractedFriends = Object.keys(extractedFriendsList).map(id => ({
                             id,
                             name: res[id].name,
                             email: res[id].email,
