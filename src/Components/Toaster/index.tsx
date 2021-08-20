@@ -22,8 +22,8 @@ const Toaster = ({ time, message, type, styles = {}, showToast = false }: Toaste
 
     const hideToaster = () => setShowToaster(false);
 
-    const getClassNames = (type: toasterType) => {
-        switch (type) {
+    const getClassNames = (customTypeForClass: toasterType) => {
+        switch (customTypeForClass) {
             case "ERROR": return "toastWrapper error";
             case "SUCCESS": return "toastWrapper success";
             case "WARNING": return "toastWrapper warning";
@@ -31,8 +31,8 @@ const Toaster = ({ time, message, type, styles = {}, showToast = false }: Toaste
         }
     }
 
-    const getIcons = (type: toasterType): IconDefinition => {
-        switch (type) {
+    const getIcons = (customType: toasterType): IconDefinition => {
+        switch (customType) {
             case "ERROR": return faShieldAlt;
             case "SUCCESS": return faCheckCircle;
             case "WARNING": return faExclamationTriangle;

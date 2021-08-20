@@ -37,10 +37,10 @@ const AdditionalDetails = () => {
         }
     }
 
-    const handleAdditionalDetails = (name: string, e: any) => {
+    const handleAdditionalDetails = (e: any) => {
         setAdditionalDetails({
             ...addtionalDetial,
-            [name]: e.target.value,
+            [e.name]: e.target.value,
         });
     }
 
@@ -53,7 +53,7 @@ const AdditionalDetails = () => {
                     Please add additional Details to continue:
                 </p>
                 <form onSubmit={handleSaving}>
-                    <input type="text" required placeholder="Full Name" onChange={(e) => handleAdditionalDetails("name", e)} />
+                    <input type="text" required placeholder="Full Name" name="name" onChange={handleAdditionalDetails} />
                     <button>Save Details</button>
                 </form>
             </div>

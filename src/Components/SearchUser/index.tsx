@@ -59,8 +59,8 @@ const SearchUser = (props: SearchUserProps) => {
                 </div>
                 <div className="searchResults">
                     {searchResults.length > 0 && isSearched && (
-                        searchResults.map(user => (
-                            <ul className="resultsList">
+                        searchResults.map((user, index) => (
+                            <ul className="resultsList" key={index}>
                                 <li className="result" onClick={() => sendRequest(user)}>
                                     <span>{user.name}</span>
                                     <span>&nbsp;&nbsp;{user.email}</span>

@@ -13,8 +13,8 @@ const SideBar = () => {
             </div>
             <div className="sideMenu">
                 <ul>
-                    {sideBarNavigation.map(route => (
-                        <li title={route.name}>
+                    {sideBarNavigation.map((route, i) => (
+                        <li title={route.name} key={i}>
                             <span className="routeIcon">
                                 <FontAwesomeIcon icon={route.icon} />
                             </span>

@@ -1,3 +1,8 @@
 export interface SearchUserProps {
-    hideSearchPopUp: any;
+  hideSearchPopUp: any
+}
+
+export interface UserListProps {
+  setActiveUser: any
+  activeUserEmail: string
 }

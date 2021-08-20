@@ -35,7 +35,6 @@ const SignUp = ({ changeOp }: AuthProps) => {
                     handleOnSignUpSuccess(firebaseapp);
                 })
                 .catch(error => {
-                    console.log(error);
                     setErrorDetails(SIGNUP_ERROR);
                 });
         } else {
