@@ -1,3 +1,3 @@
 export interface AuthProps {
-    changeOp: any;
+  changeOp: any
 }

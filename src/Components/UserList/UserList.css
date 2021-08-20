@@ -88,6 +88,9 @@
     box-shadow: 0 8px 6px -11px black;
     cursor: pointer;
 }
+.userListWrapper .users ul li.active {
+    background-color: rgb(195, 195, 230);
+}
 .userListWrapper .users ul li:hover {
     background-color: #eee;
 }
