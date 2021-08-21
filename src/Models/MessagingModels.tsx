@@ -1,3 +1,4 @@
 export interface MessagingProps {
-  activeChatEmail: string
+  activeChatEmail: string;
+  name?: string;
 }
