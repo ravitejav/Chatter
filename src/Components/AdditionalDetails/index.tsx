@@ -40,7 +40,7 @@ const AdditionalDetails = () => {
     const handleAdditionalDetails = (e: any) => {
         setAdditionalDetails({
             ...addtionalDetial,
-            [e.name]: e.target.value,
+            [e.target.name]: e.target.value,
         });
     }
 
