@@ -14,21 +14,23 @@ const MessageContainer = () => {
             <div className="usersList">
                 <UserList setActiveUser={setActiveUser} activeUserEmail={activeuser.email} />
             </div>
-            {Object.keys(activeuser).length > 0 && (
-                <div className="chatContainer">
-                    <div className="chatHeader">
+            <div className="chatContainer">
+                {Object.keys(activeuser).length > 0 && (
+                    <>
+                        <div className="chatHeader">
 
-                        <UserChatHeader name={activeuser.name} />
+                            <UserChatHeader name={activeuser.name} />
 
-                    </div>
-                    <div className="messages">
-                        <Messages activeChatEmail={activeuser.email || ""} />
-                    </div>
-                    <div className="messageInput">
-                        <MessageInput activeChatEmail={activeuser.email || ""} />
-                    </div>
-                </div>
-            )}
+                        </div>
+                        <div className="messages">
+                            <Messages activeChatEmail={activeuser.email || ""} />
+                        </div>
+                        <div className="messageInput">
+                            <MessageInput activeChatEmail={activeuser.email || ""} />
+                        </div>
+                    </>
+                )}
+            </div>
         </section>
     );
 }
