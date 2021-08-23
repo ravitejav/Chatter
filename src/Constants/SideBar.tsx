@@ -1,11 +1,10 @@
-import { faCommentAlt } from '@fortawesome/free-regular-svg-icons'
-import { faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faCogs, faUserPlus, faUsers, faCommentDots, faBell } from '@fortawesome/free-solid-svg-icons'
 import { Route } from '../Models/SideBarModels'
 
 const sideBarNavigation: Route[] = [
   {
     name: 'Personal Chats',
-    icon: faCommentAlt,
+    icon: faCommentDots,
     path: '/Chatter/chat',
   },
   {
@@ -17,6 +16,16 @@ const sideBarNavigation: Route[] = [
     name: 'Friend Request',
     icon: faUserPlus,
     path: '/Chatter/friendRequests',
+  },
+  {
+    name: 'Notifications',
+    icon: faBell,
+    path: '/Chatter/Notifications',
+  },
+  {
+    name: 'Settings',
+    icon: faCogs,
+    path: '/Chatter/Settings',
   },
 ]
 
