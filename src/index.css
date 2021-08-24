@@ -12,3 +12,8 @@ html, body, #root {
 body {
   position: relative;
 }
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
