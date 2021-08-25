@@ -1,30 +1,38 @@
 .messageInputWrapper {
-    width: 100%;
-    height: 50px;
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 5px 10px 5px 15px;
+  width: calc(100% - 15px);
+  height: 50px;
+  background-color: #fff;
+  margin: 5px 10px 5px 5px;
+  border-top: 2px solid rgba(112, 124, 151, 0.15);
 }
 .messageInputWrapper .inputWrapper {
-    display: flex;
-    height: 100%;
+  display: flex;
+  height: 100%;
 }
 .messageInputWrapper .inputWrapper input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding-right: 5px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 0px 10px 0px 6px;
+  color: rgba(112, 124, 151, 0.5);
+}
+.messageInputWrapper .inputWrapper input::placeholder {
+  color: rgba(112, 124, 151, 0.5);
+  opacity: 1;
 }
 .messageInputWrapper .inputWrapper .sendicon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(218, 224, 247);
-    height: 40px;
-    min-width: 40px;
-    font-size: 24px;
-    color: rgb(86, 86, 235);
-    border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(325.78deg, #2a8bf2 14.76%, #7cb8f7 87.3%);
+  box-shadow: 4px 4px 25px rgba(42, 139, 242, 0.15), 2px 2px 25px rgba(42, 139, 242, 0.05),
+    4px 6px 10px rgba(42, 139, 242, 0.15);
+  height: 40px;
+  min-width: 40px;
+  font-size: 24px;
+  margin-top: 5px;
+  color: #ffffff;
+  border-radius: 50%;
 }
