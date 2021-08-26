@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: transparent;
 }
 .userSearchPopUP .searchWrapper {
     width: 60%;
@@ -24,24 +25,32 @@
 }
 .userSearchPopUP .searchWrapper .searchBar input {
     width: 100%;
-    height: 30px;
+    height: 40px;
     outline: none;
-    border: 0.5px solid #000;
+    border: 0.5px solid rgba(112, 124, 151, 0.5);;
+  color: rgba(112, 124, 151, 0.5);
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 16px;
     margin-right: 5px;
 }
-.userSearchPopUP .searchWrapper .searchBar button {
-    height: 30px;
-    width: 100px;
-    background-color: rgb(86, 86, 235);
+.userSearchPopUP .searchWrapper .searchBar input::placeholder {
+    color: rgba(112, 124, 151, 0.5);
+    opacity: 1;
+  }
+.userSearchPopUP .searchWrapper .searchBar div {
+    height: 40px;
+    width: 140px;
     color: #fff;
+    background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
     border-radius: 16px;
+    justify-content: space-between;
+    padding: 20px 25px;
 }
+/* FF3366 */
 .userSearchPopUP .searchWrapper .searchResults {
     padding: 0% 10% 2% 10%;
-    height: 65%;
+    height: 63%;
     overflow-y: scroll;
 }
 .userSearchPopUP .searchWrapper .searchResults .noResults, 
@@ -58,13 +67,54 @@
 }
 .userSearchPopUP .searchWrapper .searchResults .resultsList .result {
     list-style: none;
-    border: 0.5px solid #000;
+    border: 0.5px solid rgba(112, 124, 151, 0.5);
     padding: 10px 12px;
     display: flex;
     flex-direction: column;
     border-radius: 12px;
     cursor: pointer;
     margin: 5px;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox {
+    display: flex;
+    width: 150%;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox img {
+    height: 56px;
+    width: 56px;
+    border-radius: 50%;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .details, 
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .details > div {
+    display: flex;
+    flex-direction: column;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .details {
+    height: 110px;
+    width: 220px;
+    padding-left: 10px;
+    justify-content: space-between;
+    color: rgba(112, 124, 151, 0.5);
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .details > div > span:nth-child(1) {
+    color: #0D1C2E;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .details div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .buttons .addFriend {
+    background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+    height: 30px;
+    color: #fff;
+    width: fit-content;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+.userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .buttons .addFriend svg {
+    padding-right: 4px;
 }
 .userSearchPopUP .searchWrapper .searchResults .resultsList .result span:nth-child(1) {
     font-size: 18px;
@@ -76,11 +126,14 @@
     padding: 3%;
     display: flex;
 }
-.userSearchPopUP .closeButton button {
-    height: 30px;
-    width: 100px;
-    background-color: rgb(230, 79, 59);
+.userSearchPopUP .closeButton div {
+    height: 40px;
+    width: 140px;
+    cursor: pointer;
+    background: linear-gradient(92.68deg, rgb(211, 148, 139) 0%, rgb(230, 79, 59) 100%);
     color: #fff;
     border-radius: 16px;
     margin-left: auto;
+    justify-content: space-between;
+    padding: 0px 35px;
 }

@@ -6,6 +6,7 @@ import { MessageType } from '../../Models/Message';
 import { MessagingProps } from '../../Models/MessagingModels';
 
 import './Messages.css';
+import { timeAgo } from '../../Helpers/TimeStampHelper';
 
 const Messages = ({ activeChatEmail }: MessagingProps) => {
 
@@ -48,7 +49,7 @@ const Messages = ({ activeChatEmail }: MessagingProps) => {
                         <div className={message.from === activeChatEmail ? "sentByFriend" : "sentByMe"}>
                             {message.message}
                         </div>
-                        <span className="timeago">4 min ago</span>
+                        <span className="timeago">{timeAgo(message.timestamp)}</span>
                     </li>
                 ))}
             </ul>

@@ -19,7 +19,7 @@ const FriendRequests = () => {
 
     const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
-    const getuserData = () =>{
+    const getuserData = () => {
         const userQuery = new FirebaseUser();
         userQuery.getAllUsers()
             .then(resultsUsers => {
@@ -32,21 +32,21 @@ const FriendRequests = () => {
     };
 
     useEffect(() => {
-       getuserData();
+        getuserData();
     }, []);
 
     useEffect(() => {
-        if(changesDetails) {
+        if (changesDetails) {
             getuserData();
             setChangedDetails(false);
         }
-     }, [changesDetails]);
+    }, [changesDetails]);
 
     const handleAcceptRequest = (e: any, user: any, userId: any) => {
         e.preventDefault();
         const userQuery = new FirebaseUser();
         userQuery.acceptFriendRequest(userId, uidExtractor(userQuery.getCurrentUser()?.email || ""))
-            .then(res =>{
+            .then(res => {
                 setChangedDetails(true);
                 setToastDetails(INFO_CONSTANT(USER_IS_ADDED));
                 callBack(1, resetToast);
@@ -78,22 +78,25 @@ const FriendRequests = () => {
                 {Object.keys(requests).map((ele: any, i: number) => (
                     requests[ele]
                         ?
-                            <li key={i}>
-                                <div className="detailWrapper">
+                        <li key={i}>
+                            <div className="detailWrapper">
+                                <div className="additonalDetails">
+                                    <img src="https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg" />
                                     <div className="details">
                                         <span>{users[ele].name}</span>
                                         <span>{users[ele].email}</span>
                                     </div>
-                                    <div className="actionButton">
-                                        <button onClick={(e) => handleAcceptRequest(e, users[ele], ele)}>
-                                            <FontAwesomeIcon icon={faCheck} />
-                                        </button>
-                                        <button onClick={(e) => handleRejectRequest(e, users[ele], ele)}>
-                                            <FontAwesomeIcon icon={faTimes} />
-                                        </button>
+                                </div>
+                                <div className="actionButton">
+                                    <div onClick={(e) => handleAcceptRequest(e, users[ele], ele)}>
+                                        Accept
+                                    </div>
+                                    <div onClick={(e) => handleRejectRequest(e, users[ele], ele)}>
+                                        Ignore
                                     </div>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                         : null
                 ))}
             </ul>
