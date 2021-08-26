@@ -6,6 +6,7 @@ import { MessageType } from '../../Models/Message';
 import { MessagingProps } from '../../Models/MessagingModels';
 
 import './Messages.css';
+import { timeAgo } from '../../Helpers/TimeStampHelper';
 
 const Messages = ({ activeChatEmail }: MessagingProps) => {
 
@@ -36,14 +37,19 @@ const Messages = ({ activeChatEmail }: MessagingProps) => {
         meesageFetching();
     }, [activeChatEmail]);
 
+    useEffect(() => {
+        document.querySelector<HTMLInputElement>('#activeMessage')?.scrollIntoView();
+     }, [messages]);
+
     return (
         <div className="messageWrapper">
             <ul className="messagesList">
                 {messages.map((message, index) => (
-                    <li className={message.from !== activeChatEmail ? "moveRight" : "moveLeft"} key={index}>
-                        <div className={message.from !== activeChatEmail ? "sentByFriend" : "sentByMe"}>
+                    <li className={message.from === activeChatEmail ? "moveLeft" : "moveRight"} key={index} id={index === messages.length -1 ? "activeMessage" : ""}>
+                        <div className={message.from === activeChatEmail ? "sentByFriend" : "sentByMe"}>
                             {message.message}
                         </div>
+                        <span className="timeago">{timeAgo(message.timestamp)}</span>
                     </li>
                 ))}
             </ul>

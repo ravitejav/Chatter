@@ -18,9 +18,7 @@ const MessageContainer = () => {
                 {Object.keys(activeuser).length > 0 && (
                     <>
                         <div className="chatHeader">
-
                             <UserChatHeader name={activeuser.name} />
-
                         </div>
                         <div className="messages">
                             <Messages activeChatEmail={activeuser.email || ""} />
@@ -29,6 +27,11 @@ const MessageContainer = () => {
                             <MessageInput activeChatEmail={activeuser.email || ""} />
                         </div>
                     </>
+                )}
+                {Object.keys(activeuser).length <= 0 && ( 
+                    <div className="typewriter center">
+                        <h1>Choose friend to chat...</h1>
+                    </div>
                 )}
             </div>
         </section>

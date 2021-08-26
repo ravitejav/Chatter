@@ -1,6 +1,7 @@
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+
 import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack } from '../../Helpers/CallBackHelper';
@@ -8,11 +9,13 @@ import { UserListProps } from '../../Models/SearchUser';
 import { toasterType } from '../../Models/ToasterModel';
 import SearchUser from '../SearchUser';
 import Toaster from '../Toaster';
+
 import './UserList.css';
 
 const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
 
     const [createNew, setCreateNew] = useState(false);
+    const [newMessageCount, setNewMessageCount] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
     const [friends, setFriends] = useState([] as any);
@@ -50,24 +53,27 @@ const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
 
     return (
         <section className="userListWrapper">
-            <div className="createNew" onClick={() => setCreateNew(true)}>
-                <span className="plus">
-                    <FontAwesomeIcon icon={faPlus} />
-                </span>
-                <span className="text">
-                    Create New
-                </span>
+            <div className="headingBar">
+                <div className="heading">
+                    <h1>Chats</h1>
+                    <span>Personal Chats</span>
+                </div>
+                <div className="createNew" onClick={() => setCreateNew(true)}>
+                    <span className="plus">
+                        <FontAwesomeIcon icon={faPlus} />
+                    </span>
+                    <span className="text">
+                        Create New Chat
+                    </span>
+                </div>
             </div>
             <div className="chatUtils">
-                <span className="chatHeading">
-                    Chat
-                </span>
-                <span className="searchBar">
-                    <input type="search" placeholder="Search Name..." onChange={(e) => setSearchText(e.target.value)} />
-                    <span className="searchIcon">
+                <div className="searchBar center">
+                    <span className="searchIcon center">
                         <FontAwesomeIcon icon={faSearch} />
                     </span>
-                </span>
+                    <input type="search" placeholder="Search Name..." onChange={(e) => setSearchText(e.target.value)} />
+                </div>
             </div>
             <div className="users">
                 <ul>
@@ -75,17 +81,29 @@ const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
                         .filter((friend: any) => friend.name.includes(searchText))
                         .map((friend: any, i: number) => (
                             <li onClick={() => setActiveUser(friend)} className={friend.email === activeUserEmail ? "active" : ""} key={i}>
-                                <span className="profileImage"><img src="https://openarmsopenminds.com/wp-content/uploads/2019/08/dummy-profile-pic.png" /></span>
-                                <span className="userName">
-                                    <span className="name">{friend.name}</span>
-                                    <span className="status">
-                                        <span className={"notActiveUser"}></span>
-                                        23 mins ago
+                                <div className="userInfo">
+                                    <img src={"https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
+                                    <span className="userName center">
+                                        <span className="name">{friend.name}</span>
+                                        <span className="status">
+                                            <span className={"notActiveUser"}></span>
+                                            23 mins ago
+                                        </span>
                                     </span>
-                                </span>
+                                </div>
+                                <div className="messageData">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga, aliquam itaque illum aliquid et vel eligendi enim, doloribus maxime officiis nulla, rem animi tenetur odio corrupti minima laborum perferendis?
+                                    </p>
+                                    {newMessageCount > 0 ? (
+                                        <span className="messageCount center">2</span>
+                                    ) : (
+                                        <span className="messageCount nonotification"></span>
+                                    )}
+                                </div>
                             </li>
                         )
-                    )}
+                        )}
                 </ul>
             </div>
             {createNew && (<SearchUser hideSearchPopUp={() => setCreateNew(false)} />)}

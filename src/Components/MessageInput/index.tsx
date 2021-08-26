@@ -31,7 +31,7 @@ const MessageInput = ({ activeChatEmail }: MessagingProps) => {
     return (
         <div className="messageInputWrapper">
             <div className="inputWrapper">
-                <input type="text" placeholder="Type Your Message...." ref={inputRef} onKeyPress={onSend} />
+                <input type="text" placeholder="Type your message here...." ref={inputRef} onKeyPress={onSend} />
                 <span className="sendicon" role="button" onClick={onSend}>
                     <FontAwesomeIcon icon={faTelegramPlane} />
                 </span>

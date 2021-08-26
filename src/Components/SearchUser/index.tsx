@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { faArrowLeft, faSearch, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 import { ERROR_CONSTANT, FAILED_TO_SEND_REQ, FRIEND_REQ_SENT, INFO_CONSTANT, MINIMUM_CHARS, TOAST_CONSTANT, WARNING_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
@@ -55,15 +57,31 @@ const SearchUser = (props: SearchUserProps) => {
             <div className="searchWrapper">
                 <div className="searchBar">
                     <input type="search" placeholder="Search for Friends...." onChange={(e) => setSearchText(e.target.value)} />
-                    <button onClick={searchUser}>Search</button>
+                    <div className="center" onClick={searchUser}>
+                        <FontAwesomeIcon icon={faSearch} />
+                        Search
+                    </div>
                 </div>
                 <div className="searchResults">
                     {searchResults.length > 0 && isSearched && (
                         searchResults.map((user, index) => (
                             <ul className="resultsList" key={index}>
-                                <li className="result" onClick={() => sendRequest(user)}>
-                                    <span>{user.name}</span>
-                                    <span>&nbsp;&nbsp;{user.email}</span>
+                                <li className="result">
+                                    <div className="requestBox">
+                                        <img src={"https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
+                                        <div className="details">
+                                            <div>
+                                                <span>{user.name}</span>
+                                                <span>&nbsp;{user.email}</span>
+                                            </div>
+                                            <div className="buttons">
+                                                <div className="center addFriend" onClick={() => sendRequest(user)}>
+                                                    <FontAwesomeIcon icon={faUserPlus} />
+                                                    Add
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         ))
@@ -80,7 +98,10 @@ const SearchUser = (props: SearchUserProps) => {
                     )}
                 </div>
                 <div className="closeButton">
-                    <button onClick={props.hideSearchPopUp}>Close</button>
+                    <div className="center" onClick={props.hideSearchPopUp}>
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                        Close
+                    </div>
                 </div>
             </div>
             <Toaster time={1} message={toastDetails.message} type={toastDetails.type as toasterType} showToast={toastDetails.showToast} />

@@ -17,57 +17,51 @@
   font-size: 24px;
 }
 .friendRequestMapper .friendRequest li {
-  position: relative;
-  list-style: none;
-  border: 2px solid #fff;
-  height: 100px;
-  width: 500px;
-  border-radius: 25px;
-  background-color: #fdfdfd;
-  box-shadow: -10px -10px 15px #fff, 10px 10px 15px rgba(0, 0, 0, 0.1), inset -5px -5px 15px #fff, inset 5px 5px 15px rgba(0, 0, 0, 0.1);
-  margin-bottom: 5px;
+  padding: 10px 10px;
+  background-color: #ffffff;
+  border: 1px solid rgba(112, 124, 151, 0.25);
+  border-radius: 6px;
 }
 .friendRequestMapper .friendRequest li .detailWrapper {
   display: flex;
-  padding: 10px 40px;
-  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 320px;
+  min-height: 90px;
 }
-.friendRequestMapper .friendRequest li .detailWrapper .details {
+.friendRequestMapper .friendRequest li .detailWrapper .additonalDetails {
+  display: flex;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .additonalDetails img {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+}
+.friendRequestMapper .friendRequest li .detailWrapper .additonalDetails .details {
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 100%;
 }
-.friendRequestMapper .friendRequest li .detailWrapper .details span:nth-child(1) {
-  font-size: 24px;
+.friendRequestMapper .friendRequest li .detailWrapper .additonalDetails .details span:nth-child(1) {
+  font-size: 18px;
+  color: #0D1C2E;
 }
-.friendRequestMapper .friendRequest li .detailWrapper .details span:nth-child(2) {
-  font-size: 16px;
+.friendRequestMapper .friendRequest li .detailWrapper .additonalDetails .details span:nth-child(2) {
+    color: rgba(112, 124, 151, 0.75);
+    font-size: 12px;
 }
 .friendRequestMapper .friendRequest li .detailWrapper .actionButton {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
+  justify-content: flex-end;
 }
-.friendRequestMapper .friendRequest li .detailWrapper .actionButton button {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 25px;
-  background-color: #fff;
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton div {
+  padding: 6px 18px;
+  border-radius: 10px;
   cursor: pointer;
-  border: none;
-  box-shadow: inset 0px -5px 5px rgba(0, 0, 0, 0.1), 0px 5px 10px rgba(0, 0, 0, 0.1), 0px 10px 15px rgba(0, 0, 0, 0.1);
+  color: #ffffff;
+  background: linear-gradient(92.68deg, rgb(211, 148, 139) 0%, rgb(230, 79, 59) 100%);
 }
-.friendRequestMapper .friendRequest li .detailWrapper .actionButton button:nth-child(1) {
-  color: #0f0;
-  margin-right: 12px;
-}
-.friendRequestMapper .friendRequest li .detailWrapper .actionButton button:nth-child(2) {
-  color: #f00;
+.friendRequestMapper .friendRequest li .detailWrapper .actionButton div:nth-child(1) {
+  margin-right: 5px;
+  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
 }

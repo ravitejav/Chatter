@@ -1,134 +1,132 @@
 .userListWrapper {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0px 20px;
 }
-.userListWrapper .createNew {
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    padding: 5px;
-    cursor: pointer;
-    transition: 0.25s;
-    height: 60px;
-    box-shadow: 0px 0px 2px 0.5px #0e0e0e;
+.userListWrapper .headingBar {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  margin-bottom: 8px;
+}
+.userListWrapper .headingBar .heading h1 {
+  font-size: 36px;
+  color: #0d1c2e;
+  font-weight: 300;
+}
+.userListWrapper .headingBar .heading span {
+  color: #707c97;
+  font-size: 12px;
+  font-weight: 300;
+  padding-left: 4px;
+}
+.userListWrapper .headingBar .createNew {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 10px 0px;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 300;
+  border-radius: 6px;
+  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+  box-shadow: 6px 6px 25px rgba(42, 139, 242, 0.15), 4px 4px 25px rgba(42, 139, 242, 0.05),
+    10px 6px 25px rgba(42, 139, 242, 0.15);
+}
+.userListWrapper .headingBar .createNew .plus {
+  margin-right: 5px;
 }
 
-.userListWrapper .createNew .plus {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    font-size: 20px;
-    font-weight: 100;
-    background-color: #9fa4e46e;
-    color: #00f;
-}
-.userListWrapper .createNew .text {
-    font-size: 20px;
-    letter-spacing: 1px;
-    padding-left: 5px;
-    color: rgb(70, 67, 67);
-    font-weight: 900;
-}
-.userListWrapper .createNew:hover {
-    box-shadow: 0px 0px 2px 3px #9fa4e4e0;
-}
+/* Css for the Search bar */
 .userListWrapper .chatUtils {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    font-size: 24px;
-}
-.userListWrapper .chatUtils .chatHeading {
-    margin-bottom: 15px;
+  background-color: #ffffff;
+  min-height: 70px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  box-shadow: 0px 10px 55px rgba(0, 0, 0, 0.05), 0px 4px 10px rgba(0, 0, 0, 0.25),
+    0px 10px 25px rgba(0, 0, 0, 0.05);
 }
 .userListWrapper .chatUtils .searchBar {
-    margin: 5px 0px;
-    background-color: rgb(218, 224, 247);
-    border-radius: 25px;
-    display: flex;
-    width: 100%;
-}
-.userListWrapper .chatUtils .searchBar input {
-    height: inherit;
-    border: none;
-    background-color: rgb(218, 224, 247);
-    outline: none;
-    border-radius: 25px;
-    padding-left: 12px;
-    padding-right: 5px;
-    width: 100%;
-    font-size: 16px;
+  width: 100%;
+  height: 100%;
 }
 .userListWrapper .chatUtils .searchBar .searchIcon {
-    display: flex;
-    align-items: center;
-    height: 40px;
-    width: 40px;
-    background-color: rgb(218, 224, 247);
-    border-radius: 25px;
-    padding-right: 12px;
+  margin-right: 10px;
 }
+.userListWrapper .chatUtils .searchBar input {
+  border: none;
+  outline: none;
+  height: 100%;
+  width: 100%;
+}
+
+/* css for the user list display */
 .userListWrapper .users {
-    overflow-y: scroll;
-}
-.userListWrapper .users ul {
-    margin: 12px 0px;
-    overflow-y: scroll;
+  margin-top: 10px;
+  overflow-y: scroll;
 }
 .userListWrapper .users ul li {
-    display: flex;
-    list-style: none;
-    padding: 5px;
-    -webkit-box-shadow: 0 8px 6px -11px black;
-    -moz-box-shadow: 0 8px 6px -11px black;
-    box-shadow: 0 8px 6px -11px black;
-    cursor: pointer;
+  margin: 10px 0px;
+  padding: 10px;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0px 2px 5px rgb(0 0 0 / 5%), 0px 4px 5px rgb(0 0 0 / 25%), 0px 2px 5px rgb(0 0 0 / 5%);
 }
 .userListWrapper .users ul li.active {
-    background-color: rgb(195, 195, 230);
+  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
 }
-.userListWrapper .users ul li:hover {
-    background-color: #eee;
-}
-.userListWrapper .users ul li .profileImage {
-    width: 45px;
-    height: 45px;
-}
-.userListWrapper .users ul li .profileImage img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-.userListWrapper .users ul li .userName {
+.userListWrapper .users ul li .userInfo {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 5px;
 }
-.userListWrapper .users ul li .userName .name {
-    font-size: 1em;
-}
-.userListWrapper .users ul li .userName .status {
-    font-size: 0.6em;
-    padding-left: 5px;
+.userListWrapper .users ul li .messageData {
+    font-size: 12px;
+    margin-top: 3px;
+    font-weight: 100;
     display: flex;
-    align-items: center;
 }
-.userListWrapper .users ul li .userName .status .activeUser, .userListWrapper .users ul li .userName .status .notActiveUser {
-    display: block;
-    height: 4px;
-    width: 4px;
+.userListWrapper .users ul li.active .messageData {
+    color: #FFFFFF;
+}
+.userListWrapper .users ul li .messageData .messageCount {
+    height: 20px;
+    min-width: 20px;
     border-radius: 50%;
-    padding: 2px;
-    margin: 0px 2px;
+    margin-left: 20px;
+    color: #ffffff;
+    background-color: #FF3366;
+    box-shadow: 4px 4px 15px rgba(198, 27, 74, 0.05), 2px 2px 10px rgba(198, 27, 74, 0.1), 1px 1px 50px rgba(198, 27, 74, 0.15);;
 }
-.userListWrapper .users ul li .userName .status .activeUser {
-    background-color: #3cff3c;
+.userListWrapper .users ul li .messageData .nonotification {
+    background-color: #ffffff;
+    box-shadow: none;
 }
-.userListWrapper .users ul li .userName .status .notActiveUser {
-    background-color: #ff5353;
+.userListWrapper .users ul li.active .messageData .nonotification {
+    background-color: #2a8bf2;
+}
+.userListWrapper .users ul li .userInfo img {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  margin-right: 8px;
+  filter: drop-shadow(1px 1px 50px rgba(198, 27, 74, 0.15));
+  object-fit: cover;
+}
+.userListWrapper .users ul li .userInfo .userName {
+    width: 100%;
+    justify-content: space-between;
+}
+.userListWrapper .users ul li .userInfo .userName .name {
+    color: #0D1C2E;
+    font-size: 18px;
+}
+.userListWrapper .users ul li .userInfo .userName .status {
+    font-size: 12px;
+    color: #707C97;
+}
+.userListWrapper .users ul li.active .userInfo .userName .status {
+    color: rgba(255, 255, 255, 0.75);
 }
