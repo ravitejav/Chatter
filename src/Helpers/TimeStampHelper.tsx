@@ -1,5 +1,5 @@
-import moment from "moment";
+import moment from 'moment'
 
 export const timeAgo = (timestamp: number) => {
-    return moment(new Date(timestamp)).fromNow();   
+  return moment(new Date(timestamp)).fromNow()
 }
