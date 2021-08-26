@@ -18,9 +18,7 @@ const MessageContainer = () => {
                 {Object.keys(activeuser).length > 0 && (
                     <>
                         <div className="chatHeader">
-
                             <UserChatHeader name={activeuser.name} />
-
                         </div>
                         <div className="messages">
                             <Messages activeChatEmail={activeuser.email || ""} />

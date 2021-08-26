@@ -1,36 +1,49 @@
 .messageWrapper {
-    padding: 2px;
-    height: inherit;
-    padding-bottom: 5px;
+  padding: 10px;
+  height: inherit;
+  overflow-y: scroll;
+  padding-bottom: 5px;
 }
 .messageWrapper ul {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 .messageWrapper ul li {
-    list-style: none;
-    width: 100%;
-    display: flex;
-    margin-bottom: 5px;
+  list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
 }
 .messageWrapper ul li div {
-    height: fit-content;
-    padding: 10px;
-    max-width: 60%;
-    width: fit-content;
+  height: fit-content;
+  padding: 12px;
+  max-width: 60%;
+  width: fit-content;
 }
 .sentByMe {
-    border-radius: 15px 15px 15px 0px;
-    background-color: #fff;
+  color: #707c97;
+  border-radius: 10px 10px 0px 10px;
+  background: #ffffff;
+  border: 1px solid rgba(112, 124, 151, 0.25);
+  box-sizing: border-box;
+  box-shadow: 10px 10px 25px rgba(112, 124, 151, 0.05), 15px 15px 35px rgba(112, 124, 151, 0.05);
 }
 .sentByFriend {
-   
-    background-color: pink;
-    border-radius: 15px 15px 0px 15px;
+  color: #ffffff;
+  border-radius: 0px 10px 10px 10px;
+  background: linear-gradient(90.54deg, #60a9f6 0%, #2a8bf2 100%);
+  box-shadow: 10px 10px 25px rgba(42, 139, 242, 0.1), 15px 15px 35px rgba(42, 139, 242, 0.05),
+  10px 10px 50px rgba(42, 139, 242, 0.1);
 }
 .moveRight {
-    justify-content: flex-end;
+  align-items: flex-end;
 }
 .moveLeft {
-    justify-content: flex-start;
+  align-items: flex-start;
+}
+.messageWrapper ul li .timeago {
+  font-size: 12px;
+  line-height: 26px;
+  color: rgba(112, 124, 151, 0.7);
 }

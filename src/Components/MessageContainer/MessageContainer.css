@@ -11,10 +11,17 @@
     flex: 2;
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 10px 55px rgba(0, 0, 0, 0.05), 0px 4px 10px rgba(0, 0, 0, 0.25), 0px 10px 25px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+.chatContainer .chatHeader {
+    background-color: rgba(112, 124, 151, 0.1);
+    border-radius: 6px 6px 0px 0px;
 }
 .chatContainer .messages {
     height: 100%;
+    overflow-y: scroll;
 }
 .chatContainer .messageInput {
     height: fit-content;
