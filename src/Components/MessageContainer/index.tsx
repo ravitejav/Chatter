@@ -28,6 +28,11 @@ const MessageContainer = () => {
                         </div>
                     </>
                 )}
+                {Object.keys(activeuser).length <= 0 && ( 
+                    <div className="typewriter center">
+                        <h1>Choose friend to chat...</h1>
+                    </div>
+                )}
             </div>
         </section>
     );

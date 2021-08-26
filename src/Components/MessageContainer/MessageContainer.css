@@ -1,28 +1,63 @@
 .messageBlock {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
 }
 .usersList {
-    flex: 1;
-    height: 100%;
+  flex: 1;
+  height: 100%;
 }
 .chatContainer {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    background-color: #FFFFFF;
-    box-shadow: 0px 10px 55px rgba(0, 0, 0, 0.05), 0px 4px 10px rgba(0, 0, 0, 0.25), 0px 10px 25px rgba(0, 0, 0, 0.05);
-    border-radius: 6px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  box-shadow: 0px 10px 55px rgba(0, 0, 0, 0.05), 0px 4px 10px rgba(0, 0, 0, 0.25),
+    0px 10px 25px rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
 }
 .chatContainer .chatHeader {
-    background-color: rgba(112, 124, 151, 0.1);
-    border-radius: 6px 6px 0px 0px;
+  background-color: rgba(112, 124, 151, 0.1);
+  border-radius: 6px 6px 0px 0px;
 }
 .chatContainer .messages {
-    height: 100%;
-    overflow-y: scroll;
+  height: 100%;
+  overflow-y: scroll;
 }
 .chatContainer .messageInput {
-    height: fit-content;
+  height: fit-content;
 }
+/* copy pasted to animation for typing effect */
+.typewriter {
+    height: 100%;
+}
+.typewriter h1 {
+  overflow: hidden;
+  max-width: fit-content;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(24, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+/* typying effect ends */
