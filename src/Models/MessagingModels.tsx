@@ -1,4 +1,4 @@
-import { UserTrimedData } from "./SearchUser";
+import { UserTrimedData } from './SearchUser'
 
 export interface MessagingProps {
   activeUser: UserTrimedData

@@ -28,14 +28,14 @@ export const jsonToArray = (json: any) => {
 }
 
 export const trimExtraData = (userObj: any) => {
-  const trimedUserData = {} as any;
-  Object.keys(userObj).forEach(userid => {
-     trimedUserData[userid] = {
-        id: userid,
-        name: userObj[userid].name,
-        active: userObj[userid].active,
-        email: userObj[userid].email
-     }
-  });
-  return trimedUserData;
+  const trimedUserData = {} as any
+  Object.keys(userObj).forEach((userid) => {
+    trimedUserData[userid] = {
+      id: userid,
+      name: userObj[userid].name,
+      active: userObj[userid].active,
+      email: userObj[userid].email,
+    }
+  })
+  return trimedUserData
 }

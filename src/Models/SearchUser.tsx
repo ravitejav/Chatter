@@ -8,8 +8,8 @@ export interface UserListProps {
 }
 
 export interface UserTrimedData {
-  name: string;
-  active: boolean | number;
-  email: string;
-  id: string;
+  name: string
+  active: boolean | number
+  email: string
+  id: string
 }

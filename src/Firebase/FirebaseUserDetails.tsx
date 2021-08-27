@@ -20,7 +20,7 @@ export class FirebaseUser {
 
   private getCurrentuserRef() {
     const currentUserMail = uidExtractor(this.getCurrentUser()?.email || '')
-    return this.getUserRef().child(currentUserMail);
+    return this.getUserRef().child(currentUserMail)
   }
 
   getAllUsers() {
@@ -33,11 +33,11 @@ export class FirebaseUser {
   }
 
   getCurrentUserData(callback: any) {
-    return this.getCurrentuserRef().on('value', callback);
+    return this.getCurrentuserRef().on('value', callback)
   }
 
   getLiveUpdateOfUser(callBack: any) {
-    this.getUserRef().on('value', callBack);
+    this.getUserRef().on('value', callBack)
   }
 
   getUserDetails(userId: string) {
@@ -115,15 +115,14 @@ export class FirebaseUser {
   }
 
   getMyFriends(callback: any) {
-    return this.getCurrentuserRef().child('/friends/').on('value', callback);
+    return this.getCurrentuserRef().child('/friends/').on('value', callback)
   }
 
   activateUser() {
-    return this.getCurrentuserRef().child("active").set(true);
+    return this.getCurrentuserRef().child('active').set(true)
   }
 
   deactivateUser() {
-    return this.getCurrentuserRef().child("active").set(new Date().getTime());
+    return this.getCurrentuserRef().child('active').set(new Date().getTime())
   }
-
 }
