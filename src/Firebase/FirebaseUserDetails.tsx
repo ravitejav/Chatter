@@ -18,6 +18,11 @@ export class FirebaseUser {
     return this.database.ref().child('users')
   }
 
+  private getCurrentuserRef() {
+    const currentUserMail = uidExtractor(this.getCurrentUser()?.email || '')
+    return this.getUserRef().child(currentUserMail);
+  }
+
   getAllUsers() {
     return new Promise((resolve, reject) => {
       this.getUserRef()
@@ -25,6 +30,14 @@ export class FirebaseUser {
         .then((users) => (users.exists() ? resolve(users.val()) : reject(NO_DATA_ERROR)))
         .catch((error) => reject(NO_DATA_ERROR))
     })
+  }
+
+  getCurrentUserData(callback: any) {
+    return this.getCurrentuserRef().on('value', callback);
+  }
+
+  getLiveUpdateOfUser(callBack: any) {
+    this.getUserRef().on('value', callBack);
   }
 
   getUserDetails(userId: string) {
@@ -76,8 +89,7 @@ export class FirebaseUser {
   }
 
   public getRequests() {
-    const currentUserMail = uidExtractor(this.getCurrentUser()?.email || '')
-    return this.getUserRef().child(currentUserMail).child('requests').get()
+    return this.getCurrentuserRef().child('requests').get()
   }
 
   acceptFriendRequest(friendId: string, userId: string) {
@@ -88,7 +100,7 @@ export class FirebaseUser {
         .child(userId)
         .child('requests')
         .update({
-          [friendId]: false,
+          [friendId]: null,
         }),
     ])
   }
@@ -98,12 +110,20 @@ export class FirebaseUser {
       .child(userId)
       .child('requests')
       .update({
-        [friendId]: false,
+        [friendId]: null,
       })
   }
 
-  getMyFriends() {
-    const currentUserMailId = this.getCurrentUser()?.email || ''
-    return this.getUserRef().child(uidExtractor(currentUserMailId)).child('/friends/').get()
+  getMyFriends(callback: any) {
+    return this.getCurrentuserRef().child('/friends/').on('value', callback);
   }
+
+  activateUser() {
+    return this.getCurrentuserRef().child("active").set(true);
+  }
+
+  deactivateUser() {
+    return this.getCurrentuserRef().child("active").set(new Date().getTime());
+  }
+
 }

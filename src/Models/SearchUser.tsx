@@ -4,5 +4,12 @@ export interface SearchUserProps {
 
 export interface UserListProps {
   setActiveUser: any
-  activeUserEmail: string
+  activeUser: UserTrimedData
+}
+
+export interface UserTrimedData {
+  name: string;
+  active: boolean | number;
+  email: string;
+  id: string;
 }
