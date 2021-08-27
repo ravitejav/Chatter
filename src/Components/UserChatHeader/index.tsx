@@ -1,18 +1,20 @@
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { timeAgo } from '../../Helpers/TimeStampHelper';
+import { UserTrimedData } from '../../Models/SearchUser';
 import './UserchatHeader.css';
 
-const UserChatHeader = ({ name }: { name: string }) => {
+const UserChatHeader = ({ activeUser }: { activeUser: UserTrimedData }) => {
     return (
         <section className="userHeader center">
             <div className="headerBar">
                 <img src="https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg" />
                 <div className="profile center">
                     <div className="details">
-                        <span className="name">{name}</span>
+                        <span className="name">{activeUser.name}</span>
                         <span className="status">
                             <span className="activeUser"></span>
-                            active
+                            {activeUser.active === true ? 'active' : timeAgo(activeUser.active || 0)}
                         </span>
                     </div>
                     <div className="options">

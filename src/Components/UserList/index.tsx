@@ -1,51 +1,64 @@
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
+import firebase from "firebase";
 
 import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack } from '../../Helpers/CallBackHelper';
-import { UserListProps } from '../../Models/SearchUser';
+import { timeAgo } from '../../Helpers/TimeStampHelper';
+import { UserListProps, UserTrimedData } from '../../Models/SearchUser';
 import { toasterType } from '../../Models/ToasterModel';
 import SearchUser from '../SearchUser';
 import Toaster from '../Toaster';
 
 import './UserList.css';
+import { trimExtraData } from '../../Helpers/UserDataHelper';
 
-const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
+const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
 
     const [createNew, setCreateNew] = useState(false);
     const [newMessageCount, setNewMessageCount] = useState(0);
     const [searchText, setSearchText] = useState("");
     const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
     const [friends, setFriends] = useState([] as any);
+    const [users, setUserData] = useState({} as any);
+    const [selectedUsers, setSelectedusers] = useState([] as UserTrimedData[]);
 
     const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
+    const updateFriendsData = (friendList: firebase.database.DataSnapshot) => {
+        const extractedFriendsList = friendList.val() || {};
+        const extractedFriends = Object.keys(extractedFriendsList).map(id => id);
+        setFriends(extractedFriends);
+    }
+
+    const updateUserData = (updateduserData: firebase.database.DataSnapshot) => {
+        setUserData(trimExtraData(updateduserData.val()));
+    }
+
     const getFirends = () => {
         const firebaseUser = new FirebaseUser();
+        firebaseUser.getMyFriends(updateFriendsData);
         firebaseUser.getAllUsers()
             .then((res: any) => {
-                firebaseUser.getMyFriends()
-                    .then(friendList => {
-                        const extractedFriendsList = friendList.val() || {};
-                        const extractedFriends = Object.keys(extractedFriendsList).map(id => ({
-                            id,
-                            name: res[id].name,
-                            email: res[id].email,
-                        }));
-                        setFriends(extractedFriends);
-                    })
-                    .catch(err => {
-                        setToastDetails(ERROR_CONSTANT(GOOGLE_AUTH_ERROR));
-                        callBack(1, resetToast);
-                    })
+                setUserData(trimExtraData(res));
             })
             .catch(err => {
                 setToastDetails(ERROR_CONSTANT(GOOGLE_AUTH_ERROR));
                 callBack(1, resetToast);
             })
+        firebaseUser.getLiveUpdateOfUser(updateUserData);
     };
+
+    useEffect(() => {
+        if (friends.length > 0  && Object.keys(users).length > 0) {
+            const finalusers = friends
+                .map((friendId: string) => users[friendId])
+                .filter((user: UserTrimedData) => user.name.includes(searchText))
+            setSelectedusers(finalusers);
+        }
+    }, [friends, users, searchText]);
 
     useEffect(() => {
         getFirends();
@@ -77,17 +90,16 @@ const UserList = ({ setActiveUser, activeUserEmail }: UserListProps) => {
             </div>
             <div className="users">
                 <ul>
-                    {friends
-                        .filter((friend: any) => friend.name.includes(searchText))
+                    {selectedUsers
                         .map((friend: any, i: number) => (
-                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUserEmail ? "active" : ""} key={i}>
+                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUser.email ? "active" : ""} key={i}>
                                 <div className="userInfo">
                                     <img src={"https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
                                     <span className="userName center">
                                         <span className="name">{friend.name}</span>
                                         <span className="status">
                                             <span className={"notActiveUser"}></span>
-                                            23 mins ago
+                                            {friend.active === true ? 'active' : timeAgo(friend.active)}
                                         </span>
                                     </span>
                                 </div>

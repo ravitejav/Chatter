@@ -7,7 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { Route } from '../Models/SideBarModels'
 
-const sideBarNavigation: Route[] = [
+const sideBarNavigation = (currentUser: any): Route[] => [
   {
     name: 'Personal Chats',
     icon: faCommentDots,
@@ -20,6 +20,7 @@ const sideBarNavigation: Route[] = [
   },
   {
     name: 'Friend Request',
+    additonalData: currentUser ? Object.keys(currentUser.requests || {}).length : null,
     icon: faUserPlus,
     path: '/Chatter/friendRequests',
   },

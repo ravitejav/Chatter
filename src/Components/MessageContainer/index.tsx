@@ -12,19 +12,19 @@ const MessageContainer = () => {
     return (
         <section className="messageBlock">
             <div className="usersList">
-                <UserList setActiveUser={setActiveUser} activeUserEmail={activeuser.email} />
+                <UserList setActiveUser={setActiveUser} activeUser={activeuser} />
             </div>
             <div className="chatContainer">
                 {Object.keys(activeuser).length > 0 && (
                     <>
                         <div className="chatHeader">
-                            <UserChatHeader name={activeuser.name} />
+                            <UserChatHeader activeUser={activeuser} />
                         </div>
                         <div className="messages">
-                            <Messages activeChatEmail={activeuser.email || ""} />
+                            <Messages activeUser={activeuser} />
                         </div>
                         <div className="messageInput">
-                            <MessageInput activeChatEmail={activeuser.email || ""} />
+                            <MessageInput activeUser={activeuser} />
                         </div>
                     </>
                 )}

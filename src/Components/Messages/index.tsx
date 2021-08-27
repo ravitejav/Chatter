@@ -8,7 +8,7 @@ import { MessagingProps } from '../../Models/MessagingModels';
 import './Messages.css';
 import { timeAgo } from '../../Helpers/TimeStampHelper';
 
-const Messages = ({ activeChatEmail }: MessagingProps) => {
+const Messages = ({ activeUser }: MessagingProps) => {
 
     const [messages, setMessages] = useState([] as Array<MessageType>);
 
@@ -29,13 +29,13 @@ const Messages = ({ activeChatEmail }: MessagingProps) => {
 
     const meesageFetching = () => {
         const firebaseMessages = new FirebaseMessaging();
-        firebaseMessages.getMessagesOnce(activeChatEmail, messageUpdater);
+        firebaseMessages.getMessagesOnce(activeUser.email, messageUpdater);
     }
 
     useEffect(() => {
         setMessages([] as Array<MessageType>);
         meesageFetching();
-    }, [activeChatEmail]);
+    }, [activeUser]);
 
     useEffect(() => {
         document.querySelector<HTMLInputElement>('#activeMessage')?.scrollIntoView();
@@ -45,8 +45,8 @@ const Messages = ({ activeChatEmail }: MessagingProps) => {
         <div className="messageWrapper">
             <ul className="messagesList">
                 {messages.map((message, index) => (
-                    <li className={message.from === activeChatEmail ? "moveLeft" : "moveRight"} key={index} id={index === messages.length -1 ? "activeMessage" : ""}>
-                        <div className={message.from === activeChatEmail ? "sentByFriend" : "sentByMe"}>
+                    <li className={message.from === activeUser.email ? "moveLeft" : "moveRight"} key={index} id={index === messages.length -1 ? "activeMessage" : ""}>
+                        <div className={message.from === activeUser.email ? "sentByFriend" : "sentByMe"}>
                             {message.message}
                         </div>
                         <span className="timeago">{timeAgo(message.timestamp)}</span>

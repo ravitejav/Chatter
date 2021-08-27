@@ -6,7 +6,7 @@ import { MessageType } from '../../Models/Message';
 import { MessagingProps } from '../../Models/MessagingModels';
 import './MessageInput.css';
 
-const MessageInput = ({ activeChatEmail }: MessagingProps) => {
+const MessageInput = ({ activeUser }: MessagingProps) => {
 
     const inputRef = useRef(null);
 
@@ -17,7 +17,7 @@ const MessageInput = ({ activeChatEmail }: MessagingProps) => {
             message,
             timestamp: new Date().getTime(),
         }
-        messager.sendMessage(activeChatEmail, messageDetails).then().catch();
+        messager.sendMessage(activeUser.email, messageDetails).then().catch();
     }
 
     const onSend = (e: any) => {

@@ -60,6 +60,13 @@
     text-transform: uppercase;
     margin-left: 30px;
 }
+.sideNavbar .sideMenu ul li a .navItem .notifications {
+    margin-left: 5px;
+    padding: 2px 6px;
+    background-color: #FF3366;
+    color: #ffffff;
+    border-radius: 50%;
+}
 .sideNavbar .sideMenu ul li a .navItem .routeIcon {
     margin-right: 10px;
 }
