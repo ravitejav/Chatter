@@ -61,6 +61,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
                 .map((friendId: string) => users[friendId])
                 .filter((user: UserTrimedData) => user.name.includes(searchText))
             setSelectedusers(finalusers);
+            setActiveUser(users[activeUser.id]);
         }
     }, [friends, users, searchText]);
 
