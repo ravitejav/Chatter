@@ -17,6 +17,7 @@
 }
 .messageWrapper ul li div {
   height: fit-content;
+  word-wrap: break-word;
   padding: 12px;
   max-width: 60%;
   width: fit-content;

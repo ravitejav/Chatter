@@ -1,11 +1,11 @@
 import { faPlus, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import firebase from "firebase";
 
 import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
-import { callBack } from '../../Helpers/CallBackHelper';
+import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
 import { timeAgo } from '../../Helpers/TimeStampHelper';
 import { UserListProps, UserTrimedData } from '../../Models/SearchUser';
 import { toasterType } from '../../Models/ToasterModel';
@@ -14,16 +14,20 @@ import Toaster from '../Toaster';
 
 import './UserList.css';
 import { trimExtraData } from '../../Helpers/UserDataHelper';
+import { FirebaseMessaging } from '../../Firebase/FirebaseMessages';
 
 const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
 
     const [createNew, setCreateNew] = useState(false);
-    const [newMessageCount, setNewMessageCount] = useState(0);
+    const [newMessageCount, setNewMessageCount] = useState({} as any);
     const [searchText, setSearchText] = useState("");
     const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
     const [friends, setFriends] = useState([] as any);
     const [users, setUserData] = useState({} as any);
+    const [latestMessages, setLatestMessages] = useState({} as any);
     const [selectedUsers, setSelectedusers] = useState([] as UserTrimedData[]);
+    const currentUser = useRef(activeUser);
+
 
     const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
@@ -52,13 +56,43 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     };
 
     useEffect(() => {
-        if (friends.length > 0  && Object.keys(users).length > 0) {
+        if (friends.length > 0 && Object.keys(users).length > 0) {
             const finalusers = friends
                 .map((friendId: string) => users[friendId])
                 .filter((user: UserTrimedData) => user.name.includes(searchText))
             setSelectedusers(finalusers);
         }
     }, [friends, users, searchText]);
+
+    useEffect(() => {
+        const firebaseMessages = new FirebaseMessaging();
+        const handleMessageUpdate = (friendEmailId: string) => (messages: firebase.database.DataSnapshot) => {
+            if (messages.exists()) {
+                // console.log(friendEmailId !== currentUser.current.id);
+                // if (friendEmailId !== currentUser.current.id) {
+                //     setNewMessageCount({
+                //         ...newMessageCount,
+                //         [friendEmailId]: (newMessageCount[friendEmailId] || 0 ) + 1,
+                //     });
+                //     console.log(newMessageCount[friendEmailId], "sd", (newMessageCount[friendEmailId] || 0 ) + 1);
+                // }
+                setLatestMessages({
+                    ...latestMessages,
+                    [friendEmailId]: messages.val()[Object.keys(messages.val())[0]].message,
+                })
+            }
+        }
+        friends.forEach((friendId: string) => {
+            firebaseMessages.getLastMessage(friendId, handleMessageUpdate(friendId));
+        });
+    }, [friends]);
+
+    const resetMessageCount = (friendEmail: string) => setNewMessageCount({ ...newMessageCount, [friendEmail]: 0 });
+
+    const setActiveUserGlobal = (friend: any) => {
+        setActiveUser(friend);
+        currentUser.current = friend;
+    } 
 
     useEffect(() => {
         getFirends();
@@ -92,7 +126,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
                 <ul>
                     {selectedUsers
                         .map((friend: any, i: number) => (
-                            <li onClick={() => setActiveUser(friend)} className={friend.email === activeUser.email ? "active" : ""} key={i}>
+                            <li onClick={() => { setActiveUserGlobal(friend); resetMessageCount(friend.id); }} className={friend.email === activeUser.email ? "active" : ""} key={i}>
                                 <div className="userInfo">
                                     <img src={"https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
                                     <span className="userName center">
@@ -105,12 +139,13 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
                                 </div>
                                 <div className="messageData">
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa fuga, aliquam itaque illum aliquid et vel eligendi enim, doloribus maxime officiis nulla, rem animi tenetur odio corrupti minima laborum perferendis?
+                                        {latestMessages[friend.id]}
                                     </p>
-                                    {newMessageCount > 0 ? (
-                                        <span className="messageCount center">2</span>
+                                    {newMessageCount[friend.id] > 0 ? (
+                                        <span className="messageCount center">{newMessageCount[friend.id]}</span>
                                     ) : (
-                                        <span className="messageCount nonotification"></span>
+                                        // <span className="messageCount nonotification"></span>
+                                        null
                                     )}
                                 </div>
                             </li>
