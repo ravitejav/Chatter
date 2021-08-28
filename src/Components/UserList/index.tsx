@@ -46,7 +46,6 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
         firebaseUser.getMyFriends(updateFriendsData);
         firebaseUser.getAllUsers()
             .then((res: any) => {
-                console.log(res);
                 setUserData(trimExtraData(res));
             })
             .catch(err => {
