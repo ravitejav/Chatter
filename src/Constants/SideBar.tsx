@@ -16,7 +16,7 @@ const sideBarNavigation = (currentUser: any): Route[] => [
   {
     name: 'Group Chats',
     icon: faUsers,
-    path: '/Chatter/chat',
+    path: '/Chatter/groupChat',
   },
   {
     name: 'Friend Request',

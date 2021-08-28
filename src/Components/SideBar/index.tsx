@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
 
@@ -12,6 +12,7 @@ import './SideBar.css';
 const SideBar = () => {
 
     const [currentUser, setCurrentUser] = useState({} as any);
+    const path = useLocation();
 
     useEffect(() => {
         const firebaseUser = new FirebaseUser();
@@ -27,7 +28,7 @@ const SideBar = () => {
             <div className="sideMenu">
                 <ul>
                     {sideBarNavigation(currentUser).map((route, i) => (
-                        <li title={route.name} key={i} className={i === 0 ? "active" : ""}>
+                        <li title={route.name} key={i} className={route.path === path.pathname ? "active" : ""}>
                             <Link to={route.path}>
                                 <div className={"linebar"}></div>
                                 <div className={"navItem"}>
