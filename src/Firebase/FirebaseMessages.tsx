@@ -18,24 +18,28 @@ export class FirebaseMessaging {
     return this.database.ref().child('userchats')
   }
 
-  public getMessagesOnce(friendEmail: string, messageUpdater: any) {
+  private getChatPathToFriend(friendEmail: string) {
     const currentUser = this.auth.currentUser?.email || ''
-    return this.getUserChatRef()
-      .child(getMessageId(currentUser, friendEmail))
-      .on(FIREBASE_VALUE, messageUpdater, (error) => {
-        // handle error
-      })
+    return this.getUserChatRef().child(getMessageId(currentUser, friendEmail))
+  }
+
+  public getMessagesOnce(friendEmail: string, messageUpdater: any) {
+    return this.getChatPathToFriend(friendEmail).on(FIREBASE_VALUE, messageUpdater, (error) => {
+      // handle error
+    })
   }
 
   public sendMessage(friendEmail: string, messageDetails: MessageType) {
     const currentUser = this.auth.currentUser?.email || ''
-    return this.getUserChatRef()
-      .child(getMessageId(currentUser, friendEmail))
-      .update({
-        [messageDetails.timestamp]: {
-          ...messageDetails,
-          from: currentUser,
-        },
-      })
+    return this.getChatPathToFriend(friendEmail).update({
+      [messageDetails.timestamp]: {
+        ...messageDetails,
+        from: currentUser,
+      },
+    })
+  }
+
+  public getLastMessage(friendEmail: string, callback: any) {
+    return this.getChatPathToFriend(friendEmail).orderByValue().limitToLast(1).on('value', callback)
   }
 }

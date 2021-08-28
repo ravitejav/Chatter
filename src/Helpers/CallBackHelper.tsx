@@ -3,7 +3,7 @@ export const callBack = (time: number, callbackfunc: any) => {
 }
 
 export const uidExtractor = (email: string) => {
-  return email.replaceAll('@', '').replaceAll('.', '')
+  return email?.replaceAll('@', '').replaceAll('.', '') || ''
 }
 
 export const getMessageId = (userId: string, friendId: string) => {

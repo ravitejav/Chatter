@@ -87,6 +87,11 @@
     margin-top: 3px;
     font-weight: 100;
     display: flex;
+    max-width: 330px;
+}
+.userListWrapper .users ul li .messageData p {
+  word-wrap: break-word;
+  width: 290px;
 }
 .userListWrapper .users ul li.active .messageData {
     color: #FFFFFF;
