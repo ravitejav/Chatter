@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react'
 import firebase from 'firebase'
 
-import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, TOAST_CONSTANT } from '../../Constants/ToasterContants'
+import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, NOT_ABLE_SYNC, TOAST_CONSTANT } from '../../Constants/ToasterContants'
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails'
 import { callBack, uidExtractor } from '../../Helpers/CallBackHelper'
 import { timeAgo } from '../../Helpers/TimeStampHelper'
@@ -15,6 +15,7 @@ import Toaster from '../Toaster'
 import './UserList.css'
 import { trimExtraData } from '../../Helpers/UserDataHelper'
 import { FirebaseMessaging } from '../../Firebase/FirebaseMessages'
+import { getCountOfLatestMessages } from '../../Helpers/MessageHelper'
 
 const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
   const [createNew, setCreateNew] = useState(false)
@@ -67,14 +68,6 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
   const handleMessageUpdate = (friendId: string, messages: firebase.database.DataSnapshot) => {
     if (messages.exists()) {
       const message = messages.val()[Object.keys(messages.val())[0]];
-      // console.log(friendEmailId !== currentUser.current.id);
-      // if (friendEmailId !== currentUser.current.id) {
-      //     setNewMessageCount({
-      //         ...newMessageCount,
-      //         [friendEmailId]: (newMessageCount[friendEmailId] || 0 ) + 1,
-      //     });
-      //     console.log(newMessageCount[friendEmailId], "sd", (newMessageCount[friendEmailId] || 0 ) + 1);
-      // }
       setLatestMessages((existingLatestMessages: any) => ({
         ...existingLatestMessages,
         [friendId]: message.message,
@@ -82,23 +75,59 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     }
   }
 
+  const handleMessageCountUpdate =  (updatedMessages: firebase.database.DataSnapshot, friendEmailId: string) => {
+    if(updatedMessages.exists()) {
+      const firebaselive = new FirebaseMessaging()
+      if(currentUser.current.email && (uidExtractor(currentUser.current.email) === friendEmailId)) {
+        firebaselive.setLastReadTime(friendEmailId).then().catch();
+      } else {
+        firebaselive.getLastReadTime(friendEmailId).then(res => {
+          console.log(res.val())
+          setNewMessageCount((currentMessageCount: any) => ({
+            ...currentMessageCount,
+            [uidExtractor(friendEmailId)]: getCountOfLatestMessages(res.val() || 0, updatedMessages),
+          }));
+        }).catch(error => {
+          setToastDetails(ERROR_CONSTANT(NOT_ABLE_SYNC))
+          callBack(1, resetToast)
+        })
+      }
+      
+    }
+  }
+
   useEffect(() => {
     const firebaseMessages = new FirebaseMessaging()
     friends.forEach((friendId: string) => {
       firebaseMessages.getLastMessage(friendId, handleMessageUpdate)
+      firebaseMessages.getMessagesOnce(friendId, handleMessageCountUpdate);
     })
   }, [friends])
 
   const resetMessageCount = (friendEmail: string) =>
     setNewMessageCount({ ...newMessageCount, [friendEmail]: 0 })
 
-  const setActiveUserGlobal = (friend: any) => {
+  const setActiveUserGlobal = (friend: UserTrimedData) => {
+    if(currentUser.current.id) {
+      const firebaseMessaging = new FirebaseMessaging()
+      firebaseMessaging.setLastReadTime(currentUser.current.email);
+    }
     setActiveUser(friend)
     currentUser.current = friend
   }
 
   useEffect(() => {
     getFirends()
+    return () => {
+      const firebaselive = new FirebaseMessaging()
+      firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+      currentUser.current = {
+        id: '',
+        email: '',
+        name: '',
+        active: false,
+      };
+    };
   }, [])
 
   return (
@@ -129,7 +158,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
       </div>
       <div className="users">
         <ul>
-          {selectedUsers.map((friend: any, i: number) => (
+          {selectedUsers.map((friend: UserTrimedData, i: number) => (
             <li
               onClick={() => {
                 setActiveUserGlobal(friend)
@@ -148,7 +177,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
                   <span className="name">{friend.name}</span>
                   <span className="status">
                     <span className={'notActiveUser'} />
-                    {friend.active === true ? 'active' : timeAgo(friend.active)}
+                    {friend.active === true ? 'active' : timeAgo(friend.active as any)}
                   </span>
                 </span>
               </div>
