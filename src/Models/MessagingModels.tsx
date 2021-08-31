@@ -1,4 +1,6 @@
+import { UserTrimedData } from './SearchUser'
+
 export interface MessagingProps {
-  activeChatEmail: string
+  activeUser: UserTrimedData
   name?: string
 }
