@@ -82,7 +82,6 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
         firebaselive.setLastReadTime(friendEmailId).then().catch();
       } else {
         firebaselive.getLastReadTime(friendEmailId).then(res => {
-          console.log(res.val())
           setNewMessageCount((currentMessageCount: any) => ({
             ...currentMessageCount,
             [uidExtractor(friendEmailId)]: getCountOfLatestMessages(res.val() || 0, updatedMessages),
