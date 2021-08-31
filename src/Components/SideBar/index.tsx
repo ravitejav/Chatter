@@ -17,8 +17,8 @@ const SideBar = () => {
     const path = useLocation();
 
     const signOut = () => {
-        const firebase = new Firebase();
-        firebase.signOut()
+        const firebaseAuth = new Firebase();
+        firebaseAuth.signOut()
             .then(res =>  history.push("/Chatter"))
             .catch(error => {
                 // handle error

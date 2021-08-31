@@ -75,8 +75,8 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
       //     });
       //     console.log(newMessageCount[friendEmailId], "sd", (newMessageCount[friendEmailId] || 0 ) + 1);
       // }
-      setLatestMessages((latestMessages: any) => ({
-        ...latestMessages,
+      setLatestMessages((existingLatestMessages: any) => ({
+        ...existingLatestMessages,
         [friendId]: message.message,
       }))
     }
