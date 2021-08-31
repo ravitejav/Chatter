@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import firebase from 'firebase';
 
@@ -8,11 +8,23 @@ import { LOGIN_IMAGE } from '../../Constants/DefaultValues';
 import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import './SideBar.css';
+import { Firebase } from '../../Firebase';
 
 const SideBar = () => {
 
     const [currentUser, setCurrentUser] = useState({} as any);
+    const history = useHistory();
     const path = useLocation();
+
+    const signOut = () => {
+        const firebase = new Firebase();
+        firebase.signOut()
+            .then(res =>  history.push("/Chatter"))
+            .catch(error => {
+                // handle error
+            });
+        
+    }
 
     useEffect(() => {
         const firebaseUser = new FirebaseUser();
@@ -41,7 +53,7 @@ const SideBar = () => {
                         </li>
                     ))}
                 </ul>
-                <div className="logout">
+                <div className="logout" onClick={signOut}>
                     <span className="routeIcon">
                         <FontAwesomeIcon icon={faPowerOff} />
                     </span>

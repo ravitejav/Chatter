@@ -40,6 +40,9 @@ export class FirebaseMessaging {
   }
 
   public getLastMessage(friendEmail: string, callback: any) {
-    return this.getChatPathToFriend(friendEmail).orderByValue().limitToLast(1).on('value', (messages: firebase.database.DataSnapshot) =>  callback(friendEmail, messages))
+    return this.getChatPathToFriend(friendEmail)
+      .orderByValue()
+      .limitToLast(1)
+      .on('value', (messages: firebase.database.DataSnapshot) => callback(friendEmail, messages))
   }
 }
