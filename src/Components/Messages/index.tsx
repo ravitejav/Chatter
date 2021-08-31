@@ -20,7 +20,7 @@ const Messages = ({ activeUser }: MessagingProps) => {
     const messageUpdater = (snapshot: firebase.database.DataSnapshot) => {
         if (snapshot.exists()) {
             const arrivedMessages = snapshot.val() || {};
-            if (Object.keys(arrivedMessages).length > 1) {
+            if (Object.keys(arrivedMessages).length > 0) {
                 const receivedMessages = Object.keys(arrivedMessages).map(messageStamp => arrivedMessages[messageStamp]);
                 setMessages(receivedMessages.sort((a: MessageType, b: MessageType) => (a.timestamp - b.timestamp)));
             }
