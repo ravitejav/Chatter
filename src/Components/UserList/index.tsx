@@ -63,28 +63,29 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
       if (users[activeUser.id]) setActiveUser(users[activeUser.id])
     }
   }, [friends, users, searchText])
+  
+  const handleMessageUpdate = (friendId: string, messages: firebase.database.DataSnapshot) => {
+    if (messages.exists()) {
+      const message = messages.val()[Object.keys(messages.val())[0]];
+      // console.log(friendEmailId !== currentUser.current.id);
+      // if (friendEmailId !== currentUser.current.id) {
+      //     setNewMessageCount({
+      //         ...newMessageCount,
+      //         [friendEmailId]: (newMessageCount[friendEmailId] || 0 ) + 1,
+      //     });
+      //     console.log(newMessageCount[friendEmailId], "sd", (newMessageCount[friendEmailId] || 0 ) + 1);
+      // }
+      setLatestMessages((existingLatestMessages: any) => ({
+        ...existingLatestMessages,
+        [friendId]: message.message,
+      }))
+    }
+  }
 
   useEffect(() => {
     const firebaseMessages = new FirebaseMessaging()
-    const handleMessageUpdate =
-      (friendEmailId: string) => (messages: firebase.database.DataSnapshot) => {
-        if (messages.exists()) {
-          // console.log(friendEmailId !== currentUser.current.id);
-          // if (friendEmailId !== currentUser.current.id) {
-          //     setNewMessageCount({
-          //         ...newMessageCount,
-          //         [friendEmailId]: (newMessageCount[friendEmailId] || 0 ) + 1,
-          //     });
-          //     console.log(newMessageCount[friendEmailId], "sd", (newMessageCount[friendEmailId] || 0 ) + 1);
-          // }
-          setLatestMessages({
-            ...latestMessages,
-            [friendEmailId]: messages.val()[Object.keys(messages.val())[0]].message,
-          })
-        }
-      }
     friends.forEach((friendId: string) => {
-      firebaseMessages.getLastMessage(friendId, handleMessageUpdate(friendId))
+      firebaseMessages.getLastMessage(friendId, handleMessageUpdate)
     })
   }, [friends])
 
