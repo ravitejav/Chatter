@@ -55,7 +55,7 @@ export class FirebaseUser {
   }
 
   saveUserData(userDetails: UserDetails) {
-    const currentuserEmail =  (this.getCurrentUser()?.email || '')
+    const currentuserEmail = this.getCurrentUser()?.email || ''
     return new Promise((resolve, reject) => {
       this.getUserRef()
         .get()

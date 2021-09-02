@@ -22,9 +22,8 @@ class FirebaseApp {
   }
 
   public storage(): firebase.storage.Storage {
-    return this.firebaseApp.storage();
+    return this.firebaseApp.storage()
   }
-
 }
 
 export default new FirebaseApp()
