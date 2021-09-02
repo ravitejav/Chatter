@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import FriendRequests from '../FriendRequests';
 import MessageContainer from '../MessageContainer';
+import { Profile } from '../Profile';
 import SideBar from '../SideBar';
 import './HomePage.css';
 
 const HomePage = (props: any) => {
 
-    const url = props.match.params.id;
-    const friendRequests = url.includes("friendRequests");
+    const urlMatcher = (matcher: string) => props.match.params.id.includes(matcher);
 
     useEffect(() => {
         const userFirebase = new FirebaseUser();
@@ -23,17 +23,21 @@ const HomePage = (props: any) => {
             <div className="sidebar">
                 <SideBar />
             </div>
-            {friendRequests && (
+            {urlMatcher('friendRequests') && (
                 <div className="messageBox">
                     <FriendRequests />
                 </div>
             )}
-            {!friendRequests && (
+            {urlMatcher('chat') && (
                 <div className="messageBox">
                     <MessageContainer />
                 </div>
             )}
-
+            {urlMatcher('profile') && (
+                <div className="messageBox">
+                    <Profile />
+                </div>
+            )}
         </main>
     );
 }

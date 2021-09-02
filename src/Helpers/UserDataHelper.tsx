@@ -5,6 +5,8 @@ export const extractSearchResults = (
   searchResults: any,
   currentUserEmail: string
 ) => {
+  Object.keys(searchResults[uidExtractor(currentUserEmail)].friends || {})
+    .forEach((friendId: string) => searchResults[friendId] = null);
   searchResults[uidExtractor(currentUserEmail)] = null
   return Object.keys(searchResults)
     .map((userId) => {

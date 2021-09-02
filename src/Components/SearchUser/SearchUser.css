@@ -42,7 +42,7 @@
     height: 40px;
     width: 140px;
     color: #fff;
-    background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+    background: var(--blueButtonColor);
     border-radius: 16px;
     justify-content: space-between;
     padding: 20px 25px;
@@ -105,7 +105,7 @@
     flex-direction: row;
 }
 .userSearchPopUP .searchWrapper .searchResults .resultsList .result .requestBox .buttons .addFriend {
-    background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+    background: var(--blueButtonColor);
     height: 30px;
     color: #fff;
     width: fit-content;
@@ -130,7 +130,7 @@
     height: 40px;
     width: 140px;
     cursor: pointer;
-    background: linear-gradient(92.68deg, rgb(211, 148, 139) 0%, rgb(230, 79, 59) 100%);
+    background: var(--redButtonColor);
     color: #fff;
     border-radius: 16px;
     margin-left: auto;

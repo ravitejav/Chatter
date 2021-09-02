@@ -54,17 +54,20 @@ export class FirebaseUser {
     })
   }
 
-  saveUserData(userDetails: UserDetails, userId: string) {
+  saveUserData(userDetails: UserDetails) {
+    const currentuserEmail =  (this.getCurrentUser()?.email || '')
     return new Promise((resolve, reject) => {
       this.getUserRef()
         .get()
         .then((users) => {
           users.exists()
             ? this.getUserRef()
-                .set({
+                .update({
                   ...users.val(),
-                  [userId]: {
+                  [uidExtractor(currentuserEmail)]: {
+                    ...users.val()[uidExtractor(currentuserEmail)],
                     ...userDetails,
+                    email: currentuserEmail,
                   },
                 })
                 .then((updatedUsers) => resolve(updatedUsers))
@@ -83,7 +86,7 @@ export class FirebaseUser {
     return this.getUserRef()
       .child(requestUserId)
       .child('requests')
-      .set({
+      .update({
         [userId]: true,
       })
   }

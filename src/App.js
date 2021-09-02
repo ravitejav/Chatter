@@ -17,6 +17,7 @@ function App() {
           </Route>
           <Route path="/Chatter/details" component={AdditionalDetails} />
           <Route path="/Chatter/:id" component={HomePage} />
+          Account
         </Switch>
     </Router>
   );

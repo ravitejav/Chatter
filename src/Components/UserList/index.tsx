@@ -119,7 +119,9 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     getFirends()
     return () => {
       const firebaselive = new FirebaseMessaging()
-      firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+      if(currentUser.current.id) {
+        firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+      }
       currentUser.current = {
         id: '',
         email: '',

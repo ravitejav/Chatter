@@ -20,6 +20,11 @@ class FirebaseApp {
   public database(): firebase.database.Database {
     return this.firebaseApp.database()
   }
+
+  public storage(): firebase.storage.Storage {
+    return this.firebaseApp.storage();
+  }
+
 }
 
 export default new FirebaseApp()
