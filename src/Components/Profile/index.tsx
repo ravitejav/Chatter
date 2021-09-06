@@ -24,10 +24,9 @@ export const Profile = () => {
 
     const fileRef = useRef(null);
 
-
     const handleFormUpdate = (e: any) => {
         e.preventDefault();
-        if (profilePicName != '') {
+        if (profilePicName !== '') {
             UpdateUserData((document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0) as any);
         } else {
             UpdateUserData(null)
