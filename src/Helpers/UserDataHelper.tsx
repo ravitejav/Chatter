@@ -38,6 +38,7 @@ export const trimExtraData = (userObj: any) => {
       name: userObj[userid].name,
       active: userObj[userid].active,
       email: userObj[userid].email,
+      profileUrl: userObj[userid].profileUrl,
     }
   })
   return trimedUserData

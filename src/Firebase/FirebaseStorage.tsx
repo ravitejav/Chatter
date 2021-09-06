@@ -17,13 +17,13 @@ export class FirebaseStorage {
   }
 
   private pathRefToProfilePic() {
-    return this.storage.ref('profilePic/')
+    return this.storage.ref('/profilePic/')
   }
 
   saveProfilePic(file: any) {
     const currentUserId = uidExtractor(this.getCurrentUser()?.email || '')
-    this.pathRefToProfilePic()
+    return this.storage.ref('/profilePic/' + currentUserId).put(file)
   }
 
-  getProfilePic(id: string) {}
+  // getProfilePic(id: string) {}
 }

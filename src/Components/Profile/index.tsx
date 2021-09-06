@@ -9,6 +9,7 @@ import { Validate } from '../../Helpers/Validators';
 import { toasterType } from '../../Models/ToasterModel';
 import Toaster from '../Toaster';
 import './Profile.css';
+import { FirebaseStorage } from '../../Firebase/FirebaseStorage';
 
 export const Profile = () => {
 
@@ -26,22 +27,52 @@ export const Profile = () => {
 
     const handleFormUpdate = (e: any) => {
         e.preventDefault();
-        if(Validate(NAME, additionalDetails.name)) {
-            const firebaseUser = new FirebaseUser();
-            firebaseUser.saveUserData({ ...additionalDetails })
-                .then(res => {
-                    setToastDetails(SUCCESS_CONSTANT(UPDATED_SUCCESSFULLY));
-                    callBack(1, resetToast);
-                })
-                .catch(error => {
-                    setToastDetails(ERROR_CONSTANT(FAILED_TO_UPDATE));
-                    callBack(1, resetToast);
-                })
-
+        if (profilePicName != '') {
+            UpdateUserData((document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0) as any);
         } else {
-            setToastDetails(ERROR_CONSTANT(FAILED_TO_UPDATE));
-            callBack(1, resetToast);
+            UpdateUserData(null)
         }
+    }
+
+    const UpdateUserData = (fileString: any) => {
+        if (fileString && Validate(NAME, additionalDetails.name)) {
+            const firebaseStorage = new FirebaseStorage();
+            firebaseStorage.saveProfilePic(fileString).then((res) => {
+                res.ref.getDownloadURL()
+                    .then(result => {
+                        UpdateadditionalDetails(result);
+                    }).catch(error => {
+                        setToastDetails(ERROR_CONSTANT(FAILED_TO_UPDATE));
+                        callBack(1, resetToast);
+                    })
+            });
+        } else {
+            if (Validate(NAME, additionalDetails.name)) {
+                UpdateadditionalDetails()
+            } else {
+                setToastDetails(ERROR_CONSTANT(FAILED_TO_UPDATE));
+                callBack(1, resetToast);
+            }
+        }
+    }
+
+    const UpdateadditionalDetails = (downloadURL?: any) => {
+        const firebaseUser = new FirebaseUser();
+        const userDetails = {
+            ...additionalDetails,
+        }
+        if (downloadURL) {
+            userDetails["profileUrl"] = downloadURL;
+        }
+        firebaseUser.saveUserData(userDetails)
+            .then(res => {
+                setToastDetails(SUCCESS_CONSTANT(UPDATED_SUCCESSFULLY));
+                callBack(1, resetToast);
+            })
+            .catch(error => {
+                setToastDetails(ERROR_CONSTANT(FAILED_TO_UPDATE));
+                callBack(1, resetToast);
+            })
     }
 
     const handleAdditionalDetails = (e: any) => {
@@ -52,12 +83,12 @@ export const Profile = () => {
     }
 
     const verifyImage = (e: any) => {
-        if(e.target.validity.valid) {
-           const fileSize = (document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0)?.size || 0;
-            if((fileSize/1024) > 1024) {
+        if (e.target.validity.valid) {
+            const fileSize = (document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0)?.size || 0;
+            if ((fileSize / 1024) > 1024) {
                 setToastDetails(ERROR_CONSTANT(FILE_ERROR));
                 callBack(1, resetToast);
-            }else {
+            } else {
                 setProfiePicName(e.target.value.split('\\').pop());
             }
         }

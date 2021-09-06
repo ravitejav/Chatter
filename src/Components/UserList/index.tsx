@@ -127,6 +127,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
         email: '',
         name: '',
         active: false,
+        profileUrl: ''
       };
     };
   }, [])
@@ -171,6 +172,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
               <div className="userInfo">
                 <img
                   src={
+                    friend.profileUrl ? friend.profileUrl :
                     'https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg'
                   }
                 />
