@@ -5,6 +5,9 @@ export const extractSearchResults = (
   searchResults: any,
   currentUserEmail: string
 ) => {
+  Object.keys(searchResults[uidExtractor(currentUserEmail)].friends || {}).forEach(
+    (friendId: string) => (searchResults[friendId] = null)
+  )
   searchResults[uidExtractor(currentUserEmail)] = null
   return Object.keys(searchResults)
     .map((userId) => {
@@ -35,6 +38,7 @@ export const trimExtraData = (userObj: any) => {
       name: userObj[userid].name,
       active: userObj[userid].active,
       email: userObj[userid].email,
+      profileUrl: userObj[userid].profileUrl,
     }
   })
   return trimedUserData

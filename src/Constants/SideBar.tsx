@@ -29,11 +29,11 @@ const sideBarNavigation = (currentUser: any): Route[] => [
   //   icon: faBell,
   //   path: '/Chatter/Notifications',
   // },
-  // {
-  //   name: 'Settings',
-  //   icon: faCogs,
-  //   path: '/Chatter/Settings',
-  // },
+  {
+    name: 'Profile',
+    icon: faCogs,
+    path: '/Chatter/profile',
+  },
 ]
 
 export { sideBarNavigation }

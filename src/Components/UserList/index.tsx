@@ -119,12 +119,15 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     getFirends()
     return () => {
       const firebaselive = new FirebaseMessaging()
-      firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+      if(currentUser.current.id) {
+        firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+      }
       currentUser.current = {
         id: '',
         email: '',
         name: '',
         active: false,
+        profileUrl: ''
       };
     };
   }, [])
@@ -169,6 +172,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
               <div className="userInfo">
                 <img
                   src={
+                    friend.profileUrl ? friend.profileUrl :
                     'https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg'
                   }
                 />

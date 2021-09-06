@@ -34,7 +34,7 @@ const SideBar = () => {
     return (
         <nav className="sideNavbar">
             <div className="logo">
-                <img src={LOGIN_IMAGE} alt="profileImage" />
+                <img src={currentUser.profileUrl || LOGIN_IMAGE} alt="profileImage" />
                 <h2>{currentUser.name}</h2>
             </div>
             <div className="sideMenu">

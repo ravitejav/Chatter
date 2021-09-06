@@ -41,3 +41,5 @@ export const FAILED_TO_SEND_REQ = (name: string) => `Failed to send your request
 export const USER_IS_ADDED = 'Added to user list!!'
 export const REMOVED_FROM_REQUEST_LIST = 'Request is removed!!'
 export const NOT_ABLE_SYNC = 'Not able to update, please check your internet connection !!!'
+export const FILE_ERROR = 'File format is not supported or file size is greater then 1MB'
+export const UPDATED_SUCCESSFULLY = 'Details Update successfully!!!'

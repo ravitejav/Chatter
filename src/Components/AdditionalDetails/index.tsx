@@ -8,6 +8,7 @@ import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
 import { Validate } from '../../Helpers/Validators';
 import { toasterType } from '../../Models/ToasterModel';
+import { UserDetails } from '../../Models/UserModels';
 import Toaster from '../Toaster';
 import './AdditionalDetails.css';
 
@@ -22,9 +23,7 @@ const AdditionalDetails = () => {
         e.preventDefault();
         if (Validate(NAME, addtionalDetial.name)) {
             const userObj = new FirebaseUser();
-            const firebaseAuth = new FirebaseAuth();
-            const email = firebaseAuth.getCurrentUser()?.email || "";
-            userObj.saveUserData({ ...addtionalDetial, email },  uidExtractor(email))
+            userObj.saveUserData(addtionalDetial as UserDetails)
                 .then(res => {
                     history.push("/Chatter/chat");
                 })

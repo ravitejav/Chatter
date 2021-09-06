@@ -23,7 +23,6 @@ const SearchUser = (props: SearchUserProps) => {
             const currentUser = userDetails.getCurrentUser();
             userDetails.getAllUsers()
                 .then((res: any) => {
-                    setSearchResults(res);
                     setSearchResults(extractSearchResults(searchText, res, currentUser?.email || ""));
                 })
                 .catch(error => setSearchResults([]));

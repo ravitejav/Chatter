@@ -1,0 +1,52 @@
+.profileWrapper {
+  height: 100%;
+  width: 100%;
+}
+.profileWrapper .profile {
+  height: 80%;
+  width: 440px;
+  background-color: #ebebeb;
+  flex-direction: column;
+  border-radius: 6px;
+  box-shadow: 0 20px 32px -8px rgb(9 30 66 / 25%), 0 0 1px rgb(9 30 66 / 31%);
+}
+.profileWrapper .profile h3 {
+  padding-bottom: 40px;
+}
+.profileWrapper .profile form {
+  display: flex;
+  flex-direction: column;
+}
+.profileWrapper .profile form input {
+  padding-left: 3px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 260px;
+  border-radius: 6px;
+  border: 0.5px solid #dadada;
+  padding-left: 2px;
+  outline: none;
+}
+.profileWrapper .profile form label {
+  border: 0.5px solid #dadada;
+  border-radius: 6px;
+  background-color: #ffffff;
+  height: 40px;
+  width: 260px;
+}
+.profileWrapper .profile form input[type='file'] {
+  display: none;
+}
+.profileWrapper .profile form .submitButton {
+  width: 140px;
+  text-align: center;
+  padding: 5px;
+  background: var(--blueButtonColor);
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.profileWrapper .profile form .profilePicname {
+    margin-top: 10px;
+  font-size: 12px;
+  color: rgba(112, 124, 151, 0.5);
+}
