@@ -28,9 +28,23 @@
     border-radius: 16px;
     padding: 12px;
     width: 240px;
+    margin-bottom: 10px;
+}
+.additionalDetailsWrapper .additionalDetailsForm form input[type='file'] {
+    visibility: hidden;
+    display: none;
+}
+.additionalDetailsWrapper .additionalDetailsForm form .button {
+    background: var(--blueButtonColor);
+    padding: 5px 15px 5px;
+    border-radius: 16px;
+}
+.additionalDetailsWrapper .additionalDetailsForm form .profilePicname {
+    text-align: center;
+    margin: 5px 0px;
 }
 .additionalDetailsWrapper .additionalDetailsForm form button {
-    margin-top: 6px;
+    margin-top: 5px;
     width: fit-content;
     align-self: center;
     color: #fff;

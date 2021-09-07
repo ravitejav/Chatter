@@ -22,8 +22,6 @@ export const Profile = () => {
         firebaseUser.getCurrentUserData((res: firebase.database.DataSnapshot) => setAdditionalDetails(res.val()));
     }, []);
 
-    const fileRef = useRef(null);
-
     const handleFormUpdate = (e: any) => {
         e.preventDefault();
         if (profilePicName !== '') {
@@ -104,7 +102,7 @@ export const Profile = () => {
                 <form className="center" onSubmit={(e) => e.preventDefault()}>
                     <input type="text" name="name" placeholder={"Enter your name...."} onChange={handleAdditionalDetails} value={additionalDetails.name} />
                     <label htmlFor="profilePic" className="center button">Select your profile image...</label>
-                    <input id="profilePic" type="file" ref={fileRef} title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={verifyImage} />
+                    <input id="profilePic" type="file" title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={verifyImage} />
                     {profilePicName ? <span className="profilePicname">{profilePicName}</span> : null}
                     <div className="submitButton button" onClick={handleFormUpdate}>
                         Save Updates

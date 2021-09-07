@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import './FriendRequests.css';
@@ -100,7 +98,7 @@ const FriendRequests = () => {
                         : null
                 ))}
             </ul>
-            {requests.length === 0 && (
+            {Object.keys(requests).length === 0 && (
                 <div className="noRequests">No New Requests!!!</div>
             )}
             <Toaster time={1} message={toastDetails.message} type={toastDetails.type as toasterType} showToast={toastDetails.showToast} />
