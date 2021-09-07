@@ -5,6 +5,7 @@ import { ERROR_CONSTANT, FAILED_TO_UPDATE, FILE_ERROR, INVALID_NAME, MISSING_DAT
 import { NAME } from '../../Constants/ValidatorDefaults';
 import { FirebaseStorage } from '../../Firebase/FirebaseStorage';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
+import { verifyImage } from '../../Helpers/AdditionalDetails';
 import { callBack } from '../../Helpers/CallBackHelper';
 import { Validate } from '../../Helpers/Validators';
 import { toasterType } from '../../Models/ToasterModel';
@@ -23,7 +24,7 @@ const AdditionalDetails = () => {
 
     const handleSaving = (e: any) => {
         e.preventDefault();
-        if (Validate(NAME, addtionalDetial.name) && verifyImage({ target: document.getElementById('profilePic') })) {
+        if (Validate(NAME, addtionalDetial.name) && verifyImage({ target: document.getElementById('profilePic') }, setProfiePicName)) {
             const userObj = new FirebaseUser();
             UpdateUserData((document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0) as any)
                 .then((firbaseData: any) => {
@@ -45,11 +46,11 @@ const AdditionalDetails = () => {
         }
     }
 
-    const handleAdditionalDetails = (e: any, details?: { name: string, value: any }) => {
-        const targetName = e?.target?.name || details?.name;
+    const handleAdditionalDetails = (e: any) => {
+        const targetName = e?.target?.name;
         setAdditionalDetails((addtionalData) => ({
             ...addtionalData,
-            [targetName]: e?.target?.value || details?.value,
+            [targetName]: e?.target?.value,
         }));
     }
 
@@ -72,18 +73,6 @@ const AdditionalDetails = () => {
         });
     }
 
-    const verifyImage = (e: any) => {
-        if (e.target.validity.valid) {
-            const fileSize = (document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0)?.size || 0;
-            if ((fileSize / 1024) > 1024 || fileSize === 0) {
-                return false;
-            } else {
-                setProfiePicName(e.target.value.split('\\').pop());
-                return true;
-            }
-        }
-    }
-
     const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
     return (
@@ -95,7 +84,7 @@ const AdditionalDetails = () => {
                 <form onSubmit={handleSaving}>
                     <input type="text" required placeholder="Full Name" name="name" onChange={handleAdditionalDetails} />
                     <label htmlFor="profilePic" className="center button">Select your profile image...</label>
-                    <input id="profilePic" type="file" title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={verifyImage} />
+                    <input id="profilePic" type="file" title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={(e) => verifyImage(e, setProfiePicName)} />
                     {profilePicName ? <span className="profilePicname">{profilePicName}</span> : null}
                     <button disabled={buttonStatus}>Save Details</button>
                 </form>

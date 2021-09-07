@@ -13,31 +13,30 @@ const HomePage = (props: any) => {
     useEffect(() => {
         const userFirebase = new FirebaseUser();
         userFirebase.activateUser().then().catch();
-         window.addEventListener('beforeunload', () => {
+        window.addEventListener('beforeunload', () => {
             userFirebase.deactivateUser().then().catch();
-         })
-        }, []);
+        })
+    }, []);
 
     return (
         <main className="mainApp">
             <div className="sidebar">
                 <SideBar />
             </div>
-            {urlMatcher('friendRequests') && (
-                <div className="messageBox">
+            <div className="messageBox">
+                {urlMatcher('friendRequests') && (
                     <FriendRequests />
-                </div>
-            )}
-            {urlMatcher('chat') && (
-                <div className="messageBox">
+                )}
+                {urlMatcher('chat') && (
                     <MessageContainer />
-                </div>
-            )}
-            {urlMatcher('profile') && (
-                <div className="messageBox">
+                )}
+                {urlMatcher('profile') && (
                     <Profile />
-                </div>
-            )}
+                )}
+                {urlMatcher('groupChat') && (
+                    null
+                )}
+            </div>
         </main>
     );
 }

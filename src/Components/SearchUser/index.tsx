@@ -44,7 +44,6 @@ const SearchUser = (props: SearchUserProps) => {
             .catch(error => {
                 setToastDetails(ERROR_CONSTANT(FAILED_TO_SEND_REQ(user.name)));
                 callBack(1, resetToast);
-
             });
 
     }

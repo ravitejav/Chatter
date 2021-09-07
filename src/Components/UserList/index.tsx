@@ -43,15 +43,6 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
   const getFirends = () => {
     const firebaseUser = new FirebaseUser()
     firebaseUser.getMyFriends(updateFriendsData)
-    firebaseUser
-      .getAllUsers()
-      .then((res: any) => {
-        setUserData(trimExtraData(res))
-      })
-      .catch((err) => {
-        setToastDetails(ERROR_CONSTANT(GOOGLE_AUTH_ERROR))
-        callBack(1, resetToast)
-      })
     firebaseUser.getLiveUpdateOfUser(updateUserData)
   }
 
@@ -59,7 +50,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     if (friends.length > 0 && Object.keys(users).length > 0) {
       const finalusers = friends
         .map((friendId: string) => users[friendId])
-        .filter((user: UserTrimedData) => user.name.includes(searchText))
+        .filter((user: UserTrimedData) => user.name.toLowerCase().includes(searchText.toLowerCase()))
       setSelectedusers(finalusers)
       if (users[activeUser.id]) setActiveUser(users[activeUser.id])
     }

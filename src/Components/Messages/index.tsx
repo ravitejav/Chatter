@@ -12,11 +12,6 @@ const Messages = ({ activeUser }: MessagingProps) => {
 
     const [messages, setMessages] = useState([] as Array<MessageType>);
 
-    const updateMessages = (newMessage: MessageType) => {
-        const sortedMessages = [...messages, newMessage];
-        setMessages(sortedMessages.sort((a: MessageType, b: MessageType) => (a.timestamp - b.timestamp)));
-    };
-
     const messageUpdater = (snapshot: firebase.database.DataSnapshot) => {
         if (snapshot.exists()) {
             const arrivedMessages = snapshot.val() || {};

@@ -22,6 +22,10 @@ const MessageInput = ({ activeUser }: MessagingProps) => {
 
     const onSend = (e: any) => {
         if(e.key !== "Enter") return;
+        extractAndSendMessage();
+    }
+
+    const extractAndSendMessage = () => {
         const inputEle: any = inputRef?.current;
         const Message = inputEle && inputEle['value'];
         sendMessage(Message);
@@ -32,7 +36,7 @@ const MessageInput = ({ activeUser }: MessagingProps) => {
         <div className="messageInputWrapper">
             <div className="inputWrapper">
                 <input type="text" placeholder="Type your message here...." ref={inputRef} onKeyPress={onSend} />
-                <span className="sendicon" role="button" onClick={onSend}>
+                <span className="sendicon" role="button" onClick={extractAndSendMessage}>
                     <FontAwesomeIcon icon={faTelegramPlane} />
                 </span>
             </div>

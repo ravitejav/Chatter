@@ -43,7 +43,7 @@ export class FirebaseUser {
   getUserDetails(userId: string) {
     return new Promise((resolve, reject) => {
       this.getUserRef()
-        .child(userId)
+        .child(uidExtractor(userId))
         .get()
         .then((userDetails) => {
           userDetails.exists() ? resolve(userDetails.val()) : reject(NO_DATA_ERROR)

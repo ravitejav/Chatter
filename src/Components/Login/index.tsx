@@ -4,7 +4,17 @@ import firebase from "firebase";
 
 import { Firebase } from '../../Firebase';
 import { SIGNUP_OP } from '../../Constants/DefaultValues';
-import { ERROR_CONSTANT, TOAST_CONSTANT, AUTH_ERROR, INVALID_DETAILS, AUTH_SUCCESS, SUCCESS_CONSTANT, WARNING_CONSTANT, VERIFY_YOUR_MAIL, GOOGLE_AUTH_ERROR } from '../../Constants/ToasterContants';
+import { 
+    ERROR_CONSTANT, 
+    TOAST_CONSTANT, 
+    AUTH_ERROR, 
+    INVALID_DETAILS, 
+    AUTH_SUCCESS, 
+    SUCCESS_CONSTANT, 
+    WARNING_CONSTANT, 
+    VERIFY_YOUR_MAIL, 
+    GOOGLE_AUTH_ERROR 
+} from '../../Constants/ToasterContants';
 import { AuthProps } from '../../Models/AuthModels';
 import { toasterType } from '../../Models/ToasterModel';
 import Toaster from '../Toaster';
@@ -35,7 +45,7 @@ const Login = ({ changeOp }: AuthProps) => {
     const successHandler = () => {
         const userDetails = new FirebaseUser();
         if(currentUser) {
-            userDetails.getUserDetails(uidExtractor(currentUser.email || ''))
+            userDetails.getUserDetails(currentUser.email || '')
             .then((userData: any) => {
                 if(userData.name && userData.profileUrl) {
                     history.push("/Chatter/chat");

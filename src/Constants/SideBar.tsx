@@ -13,11 +13,11 @@ const sideBarNavigation = (currentUser: any): Route[] => [
     icon: faCommentDots,
     path: '/Chatter/chat',
   },
-  {
-    name: 'Group Chats',
-    icon: faUsers,
-    path: '/Chatter/groupChat',
-  },
+  // {
+  //   name: 'Group Chats',
+  //   icon: faUsers,
+  //   path: '/Chatter/groupChat',
+  // },
   {
     name: 'Friend Request',
     additonalData: currentUser ? Object.keys(currentUser.requests || {}).length : null,
