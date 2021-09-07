@@ -31,7 +31,7 @@
   color: #fff;
   font-weight: 300;
   border-radius: 6px;
-  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+  background: var(--blueButtonColor);
   box-shadow: 6px 6px 25px rgba(42, 139, 242, 0.15), 4px 4px 25px rgba(42, 139, 242, 0.05),
     10px 6px 25px rgba(42, 139, 242, 0.15);
 }
@@ -77,7 +77,7 @@
   box-shadow: 0px 2px 5px rgb(0 0 0 / 5%), 0px 4px 5px rgb(0 0 0 / 25%), 0px 2px 5px rgb(0 0 0 / 5%);
 }
 .userListWrapper .users ul li.active {
-  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
+  background: var(--blueButtonColor);
 }
 .userListWrapper .users ul li .userInfo {
     display: flex;

@@ -12,4 +12,5 @@ export interface UserTrimedData {
   active: boolean | number
   email: string
   id: string
+  profileUrl: string
 }
