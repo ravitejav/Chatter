@@ -37,7 +37,7 @@ const Login = ({ changeOp }: AuthProps) => {
         if(currentUser) {
             userDetails.getUserDetails(uidExtractor(currentUser.email || ''))
             .then((userData: any) => {
-                if(userData.name) {
+                if(userData.name && userData.profileUrl) {
                     history.push("/Chatter/chat");
                 } else {
                     history.push("/Chatter/details");
