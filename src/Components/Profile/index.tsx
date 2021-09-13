@@ -10,6 +10,7 @@ import { toasterType } from '../../Models/ToasterModel';
 import Toaster from '../Toaster';
 import './Profile.css';
 import { FirebaseStorage } from '../../Firebase/FirebaseStorage';
+import { verifyImage } from '../../Helpers/AdditionalDetails';
 
 export const Profile = () => {
 
@@ -79,17 +80,6 @@ export const Profile = () => {
         });
     }
 
-    const verifyImage = (e: any) => {
-        if (e.target.validity.valid) {
-            const fileSize = (document.getElementById('profilePic') as HTMLInputElement)?.files?.item(0)?.size || 0;
-            if ((fileSize / 1024) > 1024) {
-                setToastDetails(ERROR_CONSTANT(FILE_ERROR));
-                callBack(1, resetToast);
-            } else {
-                setProfiePicName(e.target.value.split('\\').pop());
-            }
-        }
-    }
 
     const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
@@ -102,7 +92,7 @@ export const Profile = () => {
                 <form className="center" onSubmit={(e) => e.preventDefault()}>
                     <input type="text" name="name" placeholder={"Enter your name...."} onChange={handleAdditionalDetails} value={additionalDetails.name} />
                     <label htmlFor="profilePic" className="center button">Select your profile image...</label>
-                    <input id="profilePic" type="file" title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={verifyImage} />
+                    <input id="profilePic" type="file" title={"Select your profile image..."} accept="image/png, image/gif, image/jpeg" onChange={(e) => verifyImage(e, setProfiePicName)} />
                     {profilePicName ? <span className="profilePicname">{profilePicName}</span> : null}
                     <div className="submitButton button" onClick={handleFormUpdate}>
                         Save Updates

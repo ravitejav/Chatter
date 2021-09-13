@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import FriendRequests from '../FriendRequests';
+import { GroupChat } from '../GroupChat';
 import MessageContainer from '../MessageContainer';
 import { Profile } from '../Profile';
 import SideBar from '../SideBar';
@@ -34,7 +35,7 @@ const HomePage = (props: any) => {
                     <Profile />
                 )}
                 {urlMatcher('groupChat') && (
-                    null
+                    <GroupChat />
                 )}
             </div>
         </main>

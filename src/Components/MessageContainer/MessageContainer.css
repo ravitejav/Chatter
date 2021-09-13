@@ -28,6 +28,7 @@
 .chatContainer .messageInput {
   height: fit-content;
 }
+
 /* copy pasted to animation for typing effect */
 .typewriter {
     height: 100%;

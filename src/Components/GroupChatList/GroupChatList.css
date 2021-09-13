@@ -1,0 +1,81 @@
+.groupChatListWrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+.groupChatListWrapper .heading {
+    display: flex;
+    justify-content: space-between;
+}
+.groupChatListWrapper .heading h1 {
+    color: #0D1C2E;
+    font-size: 24px;
+}
+.groupChatListWrapper .heading .createGroupbutton {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: var(--blueButtonColor);
+    border-radius: 6px;
+    color: #ffffff;
+    box-shadow: 6px 6px 25px rgba(42, 139, 242, 0.15), 4px 4px 25px rgba(42, 139, 242, 0.05), 10px 6px 25px rgba(42, 139, 242, 0.15);;
+}
+.groupChatListWrapper .heading .createGroupbutton svg {
+    margin-right: 10px;
+}
+.groupChatListWrapper .searchBar {
+    background-color: #ffffff;
+    margin-top: 20px;
+    height: 70px;
+    display: flex;
+    padding-left: 5px;
+    border-radius: 6px;
+}
+.groupChatListWrapper .searchBar input {
+    width: 100%;
+    border: none;
+    height: 50px;
+    margin-left: 12px;
+    margin-right: 12px;
+    outline: none;
+}
+.groupChatListWrapper .groupList {
+    overflow: scroll;
+}
+.groupChatListWrapper .groupList ul {
+    height: 480px;
+    overflow: scroll;
+    margin-top: 2px;
+}
+.groupChatListWrapper .groupList ul li {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 5%), 0px 4px 5px rgb(0 0 0 / 25%), 0px 2px 5px rgb(0 0 0 / 5%);
+    border-radius: 6px;
+    margin: 15px 3px;
+    padding: 5px 3px;
+    transition: 0.5s;
+}
+.groupChatListWrapper .groupList ul li.active {
+  background: var(--blueButtonColor);
+  color: #ffffff;
+}
+.groupChatListWrapper .groupList ul li h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+.groupChatListWrapper .groupList ul li p {
+    font-size: 14px;
+    padding: 2px 5px;
+    display: flex;
+    justify-content: space-between;
+    color: #707C97;
+}
+.groupChatListWrapper .groupList ul li .messageCount {
+    min-height: 18px;
+    min-width: 18px;
+    max-height: 18px;
+    max-width: 18px;
+    background: #FF3366;
+    color: #ffffff;
+    border-radius: 50%;
+}

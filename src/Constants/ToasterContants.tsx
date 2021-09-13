@@ -44,3 +44,4 @@ export const NOT_ABLE_SYNC = 'Not able to update, please check your internet con
 export const FILE_ERROR = 'File format is not supported or file size is greater then 1MB'
 export const UPDATED_SUCCESSFULLY = 'Details Update successfully!!!'
 export const MISSING_DATA = 'Please add all required data or file is larger...'
+export const NOT_ABLE_TO_CREATE_GROUP = 'Not able to create the group...'
