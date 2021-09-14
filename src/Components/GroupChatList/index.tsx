@@ -41,9 +41,9 @@ export const GroupChatList = (props: { setActiveGroup: any }) => {
         firebaseGroup.getGroups(handleGroups)
     }, []);
 
-    const handleGroups = (groups: firebase.database.DataSnapshot) => {
-        if(groups.exists()) {
-            setGroups(jsonToArray(groups.val()));
+    const handleGroups = (dbgroups: firebase.database.DataSnapshot) => {
+        if(dbgroups.exists()) {
+            setGroups(jsonToArray(dbgroups.val()));
         }
     }
 
