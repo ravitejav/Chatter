@@ -27,7 +27,7 @@ export const INFO_CONSTANT = (message: string) => ({
 })
 
 export const INVALID_DETAILS = 'Invalid Username or Password'
-export const AUTH_ERROR = 'Username and Password didn\'t match, please check'
+export const AUTH_ERROR = "Username and Password didn't match, please check"
 export const AUTH_SUCCESS = 'Successfully Loggedin'
 export const VERIFY_YOUR_MAIL = 'Please verify your mailID.'
 export const SIGNUP_ERROR = 'Failed to Signup, something went wrong'

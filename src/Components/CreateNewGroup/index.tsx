@@ -73,7 +73,7 @@ export const CreateNewGroup = (props: CreateGroupProps) => {
                             {Object.keys(users).map((userId: any) => 
                                 (shouldUserVisible(users[userId]) ? 
                                     (
-                                        <span className="button" onClick={() => addToSeletedUsers(users[userId])}>
+                                        <span className="button" onClick={() => addToSeletedUsers(users[userId])} key={users[userId].id}>
                                             {users[userId].name}
                                             <span>({users[userId].email})</span>
                                         </span>

@@ -59,8 +59,6 @@ export const GroupChatList = (props: { setActiveGroup: any }) => {
         props.setActiveGroup(group);
     }
 
-    console.log(groups, currentUser);
-
     return (
         <section className="groupChatListWrapper">
             <div className="heading">
@@ -79,7 +77,11 @@ export const GroupChatList = (props: { setActiveGroup: any }) => {
             <div className="groupList">
                 <ul>
                     {groups.filter((filterGroup: GroupDetails) => currentUser.groups[filterGroup.id]).map((group: GroupDetails) => (
-                        <li className={ currentGroup.current.id === group.id ? "button active" : "button" } onClick={() => setCurrentGroup(group)}>
+                        <li 
+                            className={ currentGroup.current.id === group.id ? "button active" : "button" } 
+                            onClick={() => setCurrentGroup(group)}
+                            key={group.id}
+                        >
                             <h2 className="groupName">{group.name}</h2>
                             <p className="lastMessage">
                                 <span className="latestMessage">

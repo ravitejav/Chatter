@@ -79,9 +79,12 @@ export class FirebaseUser {
   }
 
   public updateUserData(userId: string, groupId: string) {
-    return this.getUserRef().child(userId).child('groups').update({
-      [groupId]: true
-    })
+    return this.getUserRef()
+      .child(userId)
+      .child('groups')
+      .update({
+        [groupId]: true,
+      })
   }
 
   public getCurrentUser() {
