@@ -1,0 +1,11 @@
+.GroupChatWrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+.GroupChatWrapper .GroupChatList {
+    flex: 1;
+}
+.GroupChatWrapper .GroupChatMessages {
+    flex: 2;
+}

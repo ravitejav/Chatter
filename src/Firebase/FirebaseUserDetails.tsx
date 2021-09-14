@@ -54,7 +54,7 @@ export class FirebaseUser {
     })
   }
 
-  saveUserData(userDetails: UserDetails) {
+  public saveUserData(userDetails: UserDetails) {
     const currentuserEmail = this.getCurrentUser()?.email || ''
     return new Promise((resolve, reject) => {
       this.getUserRef()
@@ -76,6 +76,15 @@ export class FirebaseUser {
         })
         .catch((error) => reject(error))
     })
+  }
+
+  public updateUserData(userId: string, groupId: string) {
+    return this.getUserRef()
+      .child(userId)
+      .child('groups')
+      .update({
+        [groupId]: true,
+      })
   }
 
   public getCurrentUser() {

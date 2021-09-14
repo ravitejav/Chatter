@@ -118,7 +118,8 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
         email: '',
         name: '',
         active: false,
-        profileUrl: ''
+        profileUrl: '',
+        groups: {}
       };
     };
   }, [])

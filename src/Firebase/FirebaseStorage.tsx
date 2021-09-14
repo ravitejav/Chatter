@@ -16,10 +16,6 @@ export class FirebaseStorage {
     return this.auth.currentUser
   }
 
-  private pathRefToProfilePic() {
-    return this.storage.ref('/profilePic/')
-  }
-
   saveProfilePic(file: any) {
     const currentUserId = uidExtractor(this.getCurrentUser()?.email || '')
     return this.storage.ref('/profilePic/' + currentUserId).put(file)
