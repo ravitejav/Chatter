@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import firebase from 'firebase';
 
-import { ERROR_CONSTANT, FAILED_TO_UPDATE, FILE_ERROR, SUCCESS_CONSTANT, TOAST_CONSTANT, UPDATED_SUCCESSFULLY } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, FAILED_TO_UPDATE, SUCCESS_CONSTANT, TOAST_CONSTANT, UPDATED_SUCCESSFULLY } from '../../Constants/ToasterContants';
 import { NAME } from '../../Constants/ValidatorDefaults';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import { callBack } from '../../Helpers/CallBackHelper';

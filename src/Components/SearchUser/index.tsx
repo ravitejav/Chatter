@@ -66,7 +66,7 @@ const SearchUser = (props: SearchUserProps) => {
                             <ul className="resultsList" key={index}>
                                 <li className="result">
                                     <div className="requestBox">
-                                        <img src={"https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
+                                        <img src={user.profileUrl} alt={'profile pic'}/>
                                         <div className="details">
                                             <div>
                                                 <span>{user.name}</span>

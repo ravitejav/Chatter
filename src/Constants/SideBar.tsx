@@ -3,7 +3,6 @@ import {
   faUserPlus,
   faUsers,
   faCommentDots,
-  faBell,
 } from '@fortawesome/free-solid-svg-icons'
 import { Route } from '../Models/SideBarModels'
 
