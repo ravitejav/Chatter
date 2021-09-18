@@ -1,9 +1,4 @@
-import {
-  faCogs,
-  faUserPlus,
-  faUsers,
-  faCommentDots,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCogs, faUserPlus, faUsers, faCommentDots } from '@fortawesome/free-solid-svg-icons'
 import { Route } from '../Models/SideBarModels'
 
 const sideBarNavigation = (currentUser: any): Route[] => [

@@ -14,7 +14,7 @@ export const Spinner = () => {
         <div className="spinnerWrapper center">
             <p className="loader">
                 {loadingText.map((text: string, i: number) => (
-                    <span style={styleVar(i)}>{text}</span>
+                    <span style={styleVar(i)} key={i}>{text}</span>
                 ))}
             </p>
         </div>
