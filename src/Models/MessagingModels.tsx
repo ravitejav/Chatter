@@ -1,4 +1,4 @@
-import { GroupDetails } from './CreateGroup';
+import { GroupDetails } from './CreateGroup'
 import { UserTrimedData } from './SearchUser'
 
 export interface MessagingProps {

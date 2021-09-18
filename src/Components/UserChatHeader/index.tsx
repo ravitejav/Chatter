@@ -29,7 +29,7 @@ const UserChatHeader = ({ activeUser, activeGroup, handleRestGroup }: MessagingP
         <section className="userHeader center">
             <div className="headerBar">
                 {activeUser && (
-                    <img src={activeUser?.profileUrl || ''} alt={activeUser?.name + "profile pic"} />
+                    <img src={activeUser?.profileUrl || ''} alt={"profile pic"} />
                 )}
                 <div className="profile center">
                     <div className="details">
@@ -40,7 +40,7 @@ const UserChatHeader = ({ activeUser, activeGroup, handleRestGroup }: MessagingP
                         </span>
                     </div>
                     <div className="options">
-                        <div className="tripleDot center button" onClick={() => setDropDown(dropDown => !dropDown)}>
+                        <div className="tripleDot center button" onClick={() => setDropDown(olddropDown => !olddropDown)}>
                             <FontAwesomeIcon icon={faEllipsisV} />
                         </div>
                         {dropDown && (

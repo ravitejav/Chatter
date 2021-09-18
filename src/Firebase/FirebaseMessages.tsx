@@ -34,11 +34,11 @@ export class FirebaseMessaging {
   }
 
   private getGroupPath(groupId: string) {
-    return this.getGroupChatRef().child(groupId).child('/messages/');
+    return this.getGroupChatRef().child(groupId).child('/messages/')
   }
 
   private getMessageMetaDataPathForGroup(groupId: string) {
-    return this.getUserChatRef().child(groupId).child('/metaData/')
+    return this.getGroupChatRef().child(groupId).child('/metaData/')
   }
 
   public getMessagesOnce(friendEmail: string, messageUpdater: any) {
@@ -52,7 +52,7 @@ export class FirebaseMessaging {
   }
 
   public getMessagesForGroup(groupId: string, callback: any) {
-    this.getGroupPath(groupId).on('value', (groupMessages) => callback(groupMessages, groupId));
+    this.getGroupPath(groupId).on('value', (groupMessages) => callback(groupMessages, groupId))
   }
 
   public sendMessage(friendEmail: string, messageDetails: MessageType) {

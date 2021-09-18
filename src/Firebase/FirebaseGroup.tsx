@@ -17,7 +17,7 @@ export class FirebaseGroup {
   }
 
   private getCurrentUser() {
-    return this.firebaseAuth.currentUser;
+    return this.firebaseAuth.currentUser
   }
 
   public createGroup(groupDetails: GroupDetails) {
@@ -33,11 +33,12 @@ export class FirebaseGroup {
   }
 
   public exitGroup(group: any) {
-    const uid = uidExtractor(this.getCurrentUser()?.email || '');
-    return this.refForGroup().child(group.id).update({
-      ...group,
-      userIdList: group.userIdList.filter((id: string) => id !== uid),
-    })
+    const uid = uidExtractor(this.getCurrentUser()?.email || '')
+    return this.refForGroup()
+      .child(group.id)
+      .update({
+        ...group,
+        userIdList: group.userIdList.filter((id: string) => id !== uid),
+      })
   }
-
 }
