@@ -22,7 +22,7 @@ import Toaster from '../Toaster';
 import './Login.css';
 import { Validate } from '../../Helpers/Validators';
 import { EMAIL, PASSWORD } from '../../Constants/ValidatorDefaults';
-import { callBack, uidExtractor } from '../../Helpers/CallBackHelper';
+import { callBack } from '../../Helpers/CallBackHelper';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 
 const Login = ({ changeOp }: AuthProps) => {
@@ -132,7 +132,7 @@ const Login = ({ changeOp }: AuthProps) => {
                 <div className="line"></div>
             </div>
             <div className="googleSignInButton" onClick={signInWithGoogle}>
-                <img src="https://img.icons8.com/color/48/000000/google-logo.png"/>
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google logo"/>
                 <i className="fab fa-google fa-3x"></i>
                 <p>SignIn with Google</p>
             </div>

@@ -10,7 +10,7 @@ import { toasterType } from '../../Models/ToasterModel';
 import { CreateNewGroup } from '../CreateNewGroup';
 import SearchUser from '../SearchUser';
 import Toaster from '../Toaster';
-import { jsonToArray, trimExtraData } from '../../Helpers/UserDataHelper';
+import { jsonToArray } from '../../Helpers/UserDataHelper';
 import { GroupDetails } from '../../Models/CreateGroup';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
 import './GroupChatList.css';
@@ -18,7 +18,7 @@ import { FirebaseMessaging } from '../../Firebase/FirebaseMessages';
 import { getCountOfLatestMessages } from '../../Helpers/MessageHelper';
 import { callBack } from '../../Helpers/CallBackHelper';
 
-export const GroupChatList = (props: { setActiveGroup: any }) => {
+const GroupChatList = (props: { setActiveGroup: any }) => {
 
     const [toastDetails, setToastDetails] = useState(TOAST_CONSTANT);
     const [createNew, setCreateNew] = useState(false);
@@ -178,3 +178,5 @@ export const GroupChatList = (props: { setActiveGroup: any }) => {
     );
 
 }
+
+export default GroupChatList;

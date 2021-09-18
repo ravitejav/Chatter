@@ -1,26 +1,26 @@
-import './App.css';
-import HomePage from './Components/HomePage';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import Auth from './Components/Auth';
-import AdditionalDetails from './Components/AdditionalDetails';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+
+import { Spinner } from './Components/Spinner'
+import './App.css'
+
+const Auth = React.lazy(() => import('./Components/Auth'));
+const HomePage = React.lazy(() => import('./Components/HomePage'));
+const AdditionalDetails = React.lazy(() => import('./Components/AdditionalDetails'));
 
 function App() {
   return (
-    <Router>
+    <React.Suspense fallback={<Spinner />}>
+      <Router>
         <Switch>
-          <Route path="/Chatter/" exact={true}>
-            <Auth/>
-          </Route>
+          <Route path="/Chatter/" exact={true} component={Auth} />
           <Route path="/Chatter/details" component={AdditionalDetails} />
-          <Route path="/Chatter/:id" component={HomePage} />
-          Account
+          <Route path="/Chatter/:id" exact={true} component={HomePage} />
+          <Redirect from="/" to="/Chatter" />
         </Switch>
-    </Router>
-  );
+      </Router>
+    </React.Suspense>
+  )
 }
 
-export default App;
+export default App

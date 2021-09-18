@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { GROUP_CHAT } from '../../Constants/DefaultValues';
 import { GroupDetails } from '../../Models/CreateGroup';
-import { UserTrimedData } from '../../Models/SearchUser';
-import { GroupChatList } from '../GroupChatList';
-import MessageInput from '../MessageInput';
-import Messages from '../Messages';
-import UserChatHeader from '../UserChatHeader';
+
 import './GroupChat.css';
+
+const GroupChatList = React.lazy(() => import('../GroupChatList'));
+const MessageInput = React.lazy(() => import('../MessageInput'));
+const UserChatHeader = React.lazy(() => import('../UserChatHeader'));
+const Messages = React.lazy(() => import('../Messages'));
+
+
 
 export const GroupChat = () => {
 
     const [activeGroup, setActiveGroup] = useState({} as GroupDetails);
-    const [activeUser, setActiveUser] = useState({} as UserTrimedData);
 
     const handleExitGroup = () => setActiveGroup({} as GroupDetails);
     

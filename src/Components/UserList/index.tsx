@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useRef, useState } from 'react'
 import firebase from 'firebase'
 
-import { ERROR_CONSTANT, GOOGLE_AUTH_ERROR, NOT_ABLE_SYNC, TOAST_CONSTANT } from '../../Constants/ToasterContants'
+import { ERROR_CONSTANT, NOT_ABLE_SYNC, TOAST_CONSTANT } from '../../Constants/ToasterContants'
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails'
 import { callBack, uidExtractor } from '../../Helpers/CallBackHelper'
 import { timeAgo } from '../../Helpers/TimeStampHelper'

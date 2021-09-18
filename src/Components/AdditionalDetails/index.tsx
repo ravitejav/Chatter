@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import { DEFAULT_ADDITONAL_DETAILS } from '../../Constants/DefaultValues';
-import { ERROR_CONSTANT, FAILED_TO_UPDATE, FILE_ERROR, INVALID_NAME, MISSING_DATA, TOAST_CONSTANT } from '../../Constants/ToasterContants';
+import { ERROR_CONSTANT, FAILED_TO_UPDATE, MISSING_DATA, TOAST_CONSTANT } from '../../Constants/ToasterContants';
 import { NAME } from '../../Constants/ValidatorDefaults';
 import { FirebaseStorage } from '../../Firebase/FirebaseStorage';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';

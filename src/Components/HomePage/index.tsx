@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { FirebaseUser } from '../../Firebase/FirebaseUserDetails';
-import FriendRequests from '../FriendRequests';
 import { GroupChat } from '../GroupChat';
-import MessageContainer from '../MessageContainer';
 import { Profile } from '../Profile';
-import SideBar from '../SideBar';
 import './HomePage.css';
+
+const SideBar = lazy(() => import('../SideBar'));
+const FriendRequests = lazy(() => import('../FriendRequests'));
+const MessageContainer = lazy(() => import('../MessageContainer'));
 
 const HomePage = (props: any) => {
 

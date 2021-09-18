@@ -55,7 +55,7 @@ export const CreateNewGroup = (props: CreateGroupProps) => {
 
     const addToSeletedUsers = (user: UserTrimedData) => setSelectedUsers([...selectedUsers, user]);
 
-    const resetToast = () => setToastDetails(TOAST_CONSTANT);
+    // const resetToast = () => setToastDetails(TOAST_CONSTANT);
 
     const shouldUserVisible = (user: UserTrimedData) => {
         return user.name.toLowerCase().includes(userName.toLowerCase())
