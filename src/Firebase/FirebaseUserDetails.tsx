@@ -54,7 +54,7 @@ export class FirebaseUser {
     })
   }
 
-  saveUserData(userDetails: UserDetails) {
+  public saveUserData(userDetails: UserDetails) {
     const currentuserEmail = this.getCurrentUser()?.email || ''
     return new Promise((resolve, reject) => {
       this.getUserRef()
@@ -76,6 +76,23 @@ export class FirebaseUser {
         })
         .catch((error) => reject(error))
     })
+  }
+
+  public removeFromGroup(groupdId: string) {
+    return this.updateUserGroupData(
+      uidExtractor(this.getCurrentUser()?.email || ''),
+      groupdId,
+      false
+    )
+  }
+
+  public updateUserGroupData(userId: string, groupId: string, added: boolean = true) {
+    return this.getUserRef()
+      .child(userId)
+      .child('groups')
+      .update({
+        [groupId]: added,
+      })
   }
 
   public getCurrentUser() {

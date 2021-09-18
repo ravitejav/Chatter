@@ -1,0 +1,105 @@
+.createNewWrapper {
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 3;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.createNewWrapper .newGroup {
+    width: 800px;
+    height: 500px;
+    background-color: #ffffff;
+    box-shadow:  1px 2px 3px 3px rgb(226, 226, 226);
+    flex-direction: column;
+    justify-content: space-between;
+}
+.createNewWrapper .newGroup .newGroupForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    position: relative;
+    overflow-y: scroll;
+}
+.createNewWrapper .newGroup .newGroupForm input {
+    height: 40px;
+    width: 300px;
+    border-radius: 30px;
+    border: 0.5px solid #000;
+    padding-left: 12px;
+    outline: none;
+    margin-bottom: 10px;
+}
+.createNewWrapper .newGroup .newGroupForm .selectedUsersList {
+    display: flex;
+    width: 80%;
+    flex-wrap: wrap;
+}
+.createNewWrapper .newGroup .newGroupForm .suggestions .suggestedUsers {
+    z-index: 4;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 10%; 
+    margin-top: -10px;
+    margin-left: -15px;
+    background-color: #ffffff;
+}
+.createNewWrapper .newGroup .newGroupForm .suggestions .suggestedUsers > span {
+    padding: 3px 5px;
+    border: 1px solid #000000;
+    border-top: none;
+}
+.createNewWrapper .newGroup .newGroupForm .suggestions .suggestedUsers span span {
+    font-size: 8px;
+}
+.createNewWrapper .newGroup .newGroupForm .suggestions .suggestedUsers > span:first-child {
+    border-top: 1px solid #000000;
+}
+.createNewWrapper .newGroup .newGroupForm .selectedUsersList .userDetails {
+    padding: 2px 5px;
+    background-color: #707C97;
+    margin: 5px;
+    border-radius: 15px;
+    color: #000000;
+}
+.createNewWrapper .newGroup .newGroupForm .selectedUsersList .userDetails > span:nth-child(1) {
+    margin-right: 5px;
+    border-right: 1px solid #ffffff;
+    padding-right: 5px;
+    transition: 0.25s;
+}
+.createNewWrapper .newGroup .newGroupForm .selectedUsersList .userDetails span:hover {
+    color: #ffffff;
+}
+.createNewWrapper .newGroup .newGroupForm .createGroupButton {
+    height: 40px;
+    padding: 5px 10px;
+    background: var(--blueButtonColor);
+    width: fit-content;
+    color: #ffffff;
+    border-radius: 6px;
+}
+.createNewWrapper .newGroup .closeForm {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.createNewWrapper .newGroup .closeForm div {
+    margin: 20px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: #ffffff;
+}
+.createNewWrapper .newGroup .closeForm div span {
+    margin-left: 5px;
+}
+.createNewWrapper .newGroup .closeForm .searchButton {
+    background: var(--blueButtonColor);
+}
+.createNewWrapper .newGroup .closeForm .closeButton {
+    background: var(--redButtonColor);
+}

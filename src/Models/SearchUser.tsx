@@ -1,5 +1,6 @@
 export interface SearchUserProps {
   hideSearchPopUp: any
+  searchType?: string
 }
 
 export interface UserListProps {
@@ -13,4 +14,5 @@ export interface UserTrimedData {
   email: string
   id: string
   profileUrl: string
+  groups: any
 }
