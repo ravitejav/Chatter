@@ -6,7 +6,7 @@ import { MessageType } from '../../Models/Message';
 import { MessagingProps } from '../../Models/MessagingModels';
 import './MessageInput.css';
 
-const MessageInput = ({ activeUser }: MessagingProps) => {
+const MessageInput = ({ activeUser, activeGroup }: MessagingProps) => {
 
     const inputRef = useRef(null);
 
@@ -17,7 +17,13 @@ const MessageInput = ({ activeUser }: MessagingProps) => {
             message,
             timestamp: new Date().getTime(),
         }
-        messager.sendMessage(activeUser.email, messageDetails).then().catch();
+        if(message === '' || message === undefined || message === null) return;
+        if(activeUser) {
+            messager.sendMessage(activeUser?.email || '', messageDetails).then().catch();
+        }
+        if(activeGroup) {
+            messager.sendMessageToGroup(activeGroup.id, messageDetails).then().catch();
+        }
     }
 
     const onSend = (e: any) => {

@@ -78,12 +78,20 @@ export class FirebaseUser {
     })
   }
 
-  public updateUserData(userId: string, groupId: string) {
+  public removeFromGroup(groupdId: string) {
+    return this.updateUserGroupData(
+      uidExtractor(this.getCurrentUser()?.email || ''),
+      groupdId,
+      false
+    )
+  }
+
+  public updateUserGroupData(userId: string, groupId: string, added: boolean = true) {
     return this.getUserRef()
       .child(userId)
       .child('groups')
       .update({
-        [groupId]: true,
+        [groupId]: added,
       })
   }
 

@@ -70,9 +70,9 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     if(updatedMessages.exists()) {
       const firebaselive = new FirebaseMessaging()
       if(currentUser.current.email && (uidExtractor(currentUser.current.email) === friendEmailId)) {
-        firebaselive.setLastReadTime(friendEmailId).then().catch();
+        firebaselive.setLastReadTime(friendEmailId)?.then().catch();
       } else {
-        firebaselive.getLastReadTime(friendEmailId).then(res => {
+        firebaselive.getLastReadTime(friendEmailId)?.then(res => {
           setNewMessageCount((currentMessageCount: any) => ({
             ...currentMessageCount,
             [uidExtractor(friendEmailId)]: getCountOfLatestMessages(res.val() || 0, updatedMessages),
@@ -82,7 +82,6 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
           callBack(1, resetToast)
         })
       }
-      
     }
   }
 
@@ -111,7 +110,7 @@ const UserList = ({ setActiveUser, activeUser }: UserListProps) => {
     return () => {
       const firebaselive = new FirebaseMessaging()
       if(currentUser.current.id) {
-        firebaselive.setLastReadTime(currentUser.current.id).then().catch();
+        firebaselive.setLastReadTime(currentUser.current.id)?.then().catch();
       }
       currentUser.current = {
         id: '',

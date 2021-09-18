@@ -9,3 +9,5 @@ export const DEFAULT_ADDITONAL_DETAILS = { name: '' }
 export const SEARCH_USER = 'SEARCH_USER'
 export const CREATE_GROUP = 'CREATE_GROUP'
 export const NAMESPACE = 'eaf083c1-1279-48d1-87e4-c5ce02eae56f'
+export const GROUP_CHAT = 'GROUP_CHAT'
+export const USER_CHAT = 'USER_CHAT'

@@ -79,7 +79,7 @@ const FriendRequests = () => {
                         <li key={i}>
                             <div className="detailWrapper">
                                 <div className="additonalDetails">
-                                    <img src="https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg" />
+                                    <img src={ users[ele].profileUrl || "https://socialtelecast.com/wp-content/uploads/2020/04/%C3%9Arsula-Corber%C3%B3.jpg"} />
                                     <div className="details">
                                         <span>{users[ele].name}</span>
                                         <span>{users[ele].email}</span>

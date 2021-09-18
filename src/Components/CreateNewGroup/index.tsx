@@ -14,6 +14,7 @@ import Toaster from '../Toaster';
 import './CreateNewGroup.css';
 import { NAMESPACE } from '../../Constants/DefaultValues';
 import { FirebaseGroup } from '../../Firebase/FirebaseGroup';
+import { randomStringGen } from '../../Helpers/DefaultHelper';
 
 export const CreateNewGroup = (props: CreateGroupProps) => {
 
@@ -35,7 +36,7 @@ export const CreateNewGroup = (props: CreateGroupProps) => {
     }    
 
     const createGroup = async () => {
-        const uuid = UUID(groupName, NAMESPACE);
+        const uuid = UUID(groupName + randomStringGen(), NAMESPACE);
         const firebaseGroup = new FirebaseGroup();
         const firebaseUser = new FirebaseUser();
         firebaseGroup.createGroup({
@@ -44,7 +45,7 @@ export const CreateNewGroup = (props: CreateGroupProps) => {
             userIdList: selectedUsers.map(user => user.id).filter(id => id != null),
         }).then(() => props.hideCreateGroup()).catch(err => ERROR_CONSTANT(NOT_ABLE_TO_CREATE_GROUP));
         selectedUsers.forEach((selectedUser: UserTrimedData) => {
-            firebaseUser.updateUserData(selectedUser.id, uuid)
+            firebaseUser.updateUserGroupData(selectedUser.id, uuid)
                 .then()
                 .catch(error => {
                     setToastDetails(ERROR_CONSTANT(NOT_ABLE_SYNC))
